@@ -49,7 +49,7 @@ public extension CoreRPC {
             public let type: String // TODO: scriptPubKeyTypes
         }
         
-        func isCoinbaseTx() -> Bool {
+        public func isCoinbaseTx() -> Bool {
             return vin.contains(where: {$0.coinbase != nil})
         }
     }
