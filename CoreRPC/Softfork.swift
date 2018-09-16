@@ -10,15 +10,15 @@ import Foundation
 public extension CoreRPC {
  
     public struct SoftFork: Codable {
-        let id: String
-        let version: Int
-        let reject: [String: Bool]
+        public let id: String
+        public let version: Int
+        public let reject: [String: Bool]
     }
     
     public struct BIP9SoftFork: Codable {
-        let since: Int
-        let startTime: Int
-        let status: String
-        let timeout: Int
+        public let since: Int
+        public let startTime: Int
+        public let status: String
+        public let timeout: Int
     }
 }

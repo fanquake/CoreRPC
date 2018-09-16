@@ -10,43 +10,43 @@ import Foundation
 public extension CoreRPC {
  
     public struct Transaction: Codable {
-        let hash: String
-        let hex: String
-        let locktime: Int
-        let size: Int
-        let txid: String
-        let version: Int
-        let vin: [vIn]
-        let vout: [vOut]
-        let vsize: Int
-        let weight: Int
+        public let hash: String
+        public let hex: String
+        public let locktime: Int
+        public let size: Int
+        public let txid: String
+        public let version: Int
+        public let vin: [vIn]
+        public let vout: [vOut]
+        public let vsize: Int
+        public let weight: Int
         
-        struct vIn: Codable {
-            let coinbase: String?
-            let scriptSig: scriptSig?
-            let sequence: Int
-            let txid: String?
-            let txinwitness: [String]?
-            let vout: Int?
+        public struct vIn: Codable {
+            public let coinbase: String?
+            public let scriptSig: scriptSig?
+            public let sequence: Int
+            public let txid: String?
+            public let txinwitness: [String]?
+            public let vout: Int?
         }
         
-        struct vOut: Codable {
-            let n: Int
-            let scriptPubKey: scriptPubKey
-            let value: Double
+        public struct vOut: Codable {
+            public let n: Int
+            public let scriptPubKey: scriptPubKey
+            public let value: Double
         }
         
-        struct scriptSig: Codable {
-            let asm: String
-            let hex: String
+        public struct scriptSig: Codable {
+            public let asm: String
+            public let hex: String
         }
         
-        struct scriptPubKey: Codable {
-            let addresses: [String]?
-            let asm: String
-            let hex: String
-            let reqSigs: Int?
-            let type: String // TODO: scriptPubKeyTypes
+        public struct scriptPubKey: Codable {
+            public let addresses: [String]?
+            public let asm: String
+            public let hex: String
+            public let reqSigs: Int?
+            public let type: String // TODO: scriptPubKeyTypes
         }
         
         func isCoinbaseTx() -> Bool {

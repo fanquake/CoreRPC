@@ -8,24 +8,25 @@
 import Foundation
 
 public struct RPCError: Codable {
-    var code: RPCErrorCode.RawValue?
-    var message: String
+    public let code: RPCErrorCode.RawValue?
+    public let message: String
 }
 
 public struct RPCResult<T: Codable>: Codable {
-    var id: String?
-    var error: RPCError?
-    var result: T?
+    public let id: String?
+    public let error: RPCError?
+    public let result: T?
 }
 
 public class CoreRPC {
     
-    var connection: URLSession
-    var decoder: JSONDecoder
+    let connection: URLSession
+    let decoder: JSONDecoder
     var dataTask: URLSessionDataTask?
     var request: URLRequest
 
-    public init(node: URL!) {
+    // TODO: Set port and chain via flag/param
+    public init(node: URL) {
         connection = URLSession(configuration: .default)
         decoder = JSONDecoder()
         
@@ -36,7 +37,6 @@ public class CoreRPC {
         request.timeoutInterval = 10.0
     }
 
-    // TODO: internal?
     func call<T: Codable>(method: RPCMethod, params: Any?, completion: @escaping (RPCResult<T>) -> Void) {
 
         var body: [String: Any] = ["jsonrpc": 1.0,

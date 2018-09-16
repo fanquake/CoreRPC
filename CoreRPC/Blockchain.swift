@@ -47,72 +47,72 @@ public extension CoreRPC {
     }
     
     struct ChainTip: Codable {
-        let branchlen: Int
-        let hash: String
-        let height: Int
-        let status: String
+        public let branchlen: Int
+        public let hash: String
+        public let height: Int
+        public let status: String
     }
     
     // Verbosity 1 block
     struct Block: Codable {
-        let bits: String
-        let chainwork: String
-        let confirmations: Int
-        let difficulty: Double
-        let hash: String
-        let height: Int
-        let mediantime: Int
-        let merkleroot: String
-        let nonce: Int
-        let nextblockhash: String?
-        let nTx: Int
-        let previousblockhash: String
-        let size: Int
-        let strippedsize: Int
-        let time: Int
-        let tx: [String]
-        let version: Int
-        let versionHex: String
+        public let bits: String
+        public let chainwork: String
+        public let confirmations: Int
+        public let difficulty: Double
+        public let hash: String
+        public let height: Int
+        public let mediantime: Int
+        public let merkleroot: String
+        public let nonce: Int
+        public let nextblockhash: String?
+        public let nTx: Int
+        public let previousblockhash: String
+        public let size: Int
+        public let strippedsize: Int
+        public let time: Int
+        public let tx: [String]
+        public let version: Int
+        public let versionHex: String
     }
     
     // verbosity 2 block
     struct VerboseBlock: Codable {
-        let bits: String
-        let chainwork: String
-        let confirmations: Int
-        let difficulty: Double
-        let hash: String
-        let height: Int
-        let mediantime: Int
-        let merkleroot: String
-        let nonce: Int
-        let nextblockhash: String?
-        let nTx: Int
-        let previousblockhash: String
-        let size: Int
-        let strippedsize: Int
-        let time: Int
-        let tx: [Transaction]
-        let version: Int
-        let versionHex: String
+        public let bits: String
+        public let chainwork: String
+        public let confirmations: Int
+        public let difficulty: Double
+        public let hash: String
+        public let height: Int
+        public let mediantime: Int
+        public let merkleroot: String
+        public let nonce: Int
+        public let nextblockhash: String?
+        public let nTx: Int
+        public let previousblockhash: String
+        public let size: Int
+        public let strippedsize: Int
+        public let time: Int
+        public let tx: [Transaction]
+        public let version: Int
+        public let versionHex: String
     }
     
     struct BlockchainInfo: Codable {
-        let automatic_pruning: Bool
-        let bip9_softforks: [String: BIP9SoftFork]
-        let blocks: Int
-        let bestblockhash: String
-        let chain: String
-        let chainwork: String
-        let difficulty: Double
-        let headers: Int
-        let initialblockdownload: Bool
-        let mediantime: Int
-        let pruned: Bool
-        let pruneheight: Int
-        let size_on_disk: Int
-        let softforks: [SoftFork]
-        let verificationprogress: Double
-        let warnings: String
+        public let automatic_pruning: Bool
+        public let bip9_softforks: [String: BIP9SoftFork]
+        public let blocks: Int
+        public let bestblockhash: String
+        public let chain: String
+        public let chainwork: String
+        public let difficulty: Double
+        public let headers: Int
+        public let initialblockdownload: Bool
+        public let mediantime: Int
+        public let pruned: Bool
+        public let pruneheight: Int
+        public let size_on_disk: Int
+        public let softforks: [SoftFork]
+        public let verificationprogress: Double
+        public let warnings: String
     }
 }

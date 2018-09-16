@@ -10,62 +10,54 @@ import Foundation
 public extension CoreRPC {
     
     func getConnectionCount(completion: @escaping (RPCResult<Int>) -> Void) {
-        call(method: .getconnectioncount, params: nil) { result in
-            completion(result.result!)
-        }
+        call(method: .getconnectioncount, params: nil) { completion($0) }
     }
     
     func getMemoryInfo(completion: @escaping (RPCResult<Memory>) -> Void) {
-        call(method: .getmemoryinfo, params: nil) { result in
-            completion(result.result!)
-        }
+        call(method: .getmemoryinfo, params: nil) { completion($0) }
     }
     
     func getNetTotals(completion: @escaping (RPCResult<NetworkTraffic>) -> Void) {
-        call(method: .getnettotals, params: nil) { result in
-            completion(result.result!)
-        }
+        call(method: .getnettotals, params: nil) { completion($0) }
     }
     
     func listBanned(completion: @escaping (RPCResult<[bannedNode]>) -> Void) {
-        call(method: .listbanned, params: nil) { result in
-            completion(result.result!)
-        }
+        call(method: .listbanned, params: nil) { completion($0) }
     }
     
     struct bannedNode: Codable {
-        let address: String
-        let ban_created: Int
-        let ban_reason: String
-        let banned_util: Int
+        public let address: String
+        public let ban_created: Int
+        public let ban_reason: String
+        public let banned_util: Int
     }
     
     struct UploadTarget: Codable {
-        let bytes_left_in_cycle: Int
-        let target: Int
-        let target_reached: Bool
-        let timeframe: Int
-        let time_left_in_cycle: Int
-        let serve_historical_blocks: Bool
+        public let bytes_left_in_cycle: Int
+        public let target: Int
+        public let target_reached: Bool
+        public let timeframe: Int
+        public let time_left_in_cycle: Int
+        public let serve_historical_blocks: Bool
     }
     
     struct NetworkTraffic: Codable {
-        let totalbytesrecv: Int
-        let totalbytessent: Int
-        let timemillis: Int
-        let uploadtarget: UploadTarget
+        public let totalbytesrecv: Int
+        public let totalbytessent: Int
+        public let timemillis: Int
+        public let uploadtarget: UploadTarget
     }
     
     struct Locked: Codable {
-        let chunks_free: Int
-        let chunks_used: Int
-        let free: Int
-        let locked: Int
-        let total: Int
-        let used: Int
+        public let chunks_free: Int
+        public let chunks_used: Int
+        public let free: Int
+        public let locked: Int
+        public let total: Int
+        public let used: Int
     }
     
     struct Memory: Codable {
-        let locked: Locked
+        public let locked: Locked
     }
 }

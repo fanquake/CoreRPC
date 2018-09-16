@@ -10,20 +10,18 @@ import Foundation
 public extension CoreRPC {
     
     func getMiningInfo(completion: @escaping (RPCResult<MiningInfo>) -> Void) {
-        call(method: .getmininginfo, params: nil) { result in
-            completion(result.result!)
-        }
+        call(method: .getmininginfo, params: nil) { completion($0) }
     }
     
     struct MiningInfo: Codable {
-        let blocks: Int
-        let chain: String
-        let currentblocktx: Int
-        let currentblockweight: Int
-        let difficulty: Double
-        let networkhashps: Double
-        let pooledtx: Int
-        let warnings: String
+        public let blocks: Int
+        public let chain: String
+        public let currentblocktx: Int
+        public let currentblockweight: Int
+        public let difficulty: Double
+        public let networkhashps: Double
+        public let pooledtx: Int
+        public let warnings: String
     }
 
 }
