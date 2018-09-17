@@ -1,11 +1,11 @@
 # CoreRPC
 
 ### Install with Carthage:
-```
+```swift
 github "fanquake/CoreRPC" "master"
 ```
 
-```
+```swift
 import CoreRPC
 
 let node = URL(string: "http://username:password@127.0.0.1:18332") // testnet
@@ -21,5 +21,4 @@ rpc.getVerboseBlock(hash: "0000000095fab1da6dfa0a7169702e79e617b59afbcf7c00e5aaa
     print(coinbase.first!.txid)
     -> a08fe2730882a45b26ec2937bd9da522d8aa16f43bf7c48cbb6f8ca8401fa098
 }
-
 ```
