@@ -1,14 +1,7 @@
-//
-//  Transaction.swift
-//  CoreRPC
-//
-//  Copyright © 2018 fanquake. All rights reserved.
-//
-
 import Foundation
 
 public extension CoreRPC {
- 
+    
     public struct Transaction: Codable {
         public let hash: String
         public let hex: String

@@ -1,10 +1,3 @@
-//
-//  Network.swift
-//  CoreRPC
-//
-//  Copyright © 2018 fanquake. All rights reserved.
-//
-
 import Foundation
 
 public extension CoreRPC {

@@ -1,10 +1,3 @@
-//
-//  ErrorCodes.swift
-//  CoreRPC
-//
-//  Copyright © 2018 fanquake. All rights reserved.
-//
-
 import Foundation
 
 // https://github.com/bitcoin/bitcoin/blob/master/src/rpc/protocol.h
@@ -56,3 +49,4 @@ public enum RPCErrorCode: Int, Codable {
     // Unused reserved codes, kept around for backwards compatibility. DO NOT REUSE.
     case RPC_FORBIDDEN_BY_SAFE_MODE = -2 // Server is in safe mode, and command is not allowed in safe mode
 }
+

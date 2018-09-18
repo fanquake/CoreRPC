@@ -1,11 +1,3 @@
-//
-//  Wallet.swift
-//  CoreRPC
-//
-//  Created by Michael on 15/9/18.
-//  Copyright © 2018 fanquake. All rights reserved.
-//
-
 import Foundation
 
 public extension CoreRPC {

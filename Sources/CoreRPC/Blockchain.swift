@@ -1,10 +1,3 @@
-//
-//  Blockchain.swift
-//  CoreRPC
-//
-//  Copyright © 2018 fanquake. All rights reserved.
-//
-
 import Foundation
 
 public extension CoreRPC {
@@ -116,3 +109,4 @@ public extension CoreRPC {
         public let warnings: String
     }
 }
+

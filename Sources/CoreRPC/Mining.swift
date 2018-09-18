@@ -1,10 +1,3 @@
-//
-//  Mining.swift
-//  CoreRPC
-//
-//  Copyright © 2018 fanquake. All rights reserved.
-//
-
 import Foundation
 
 public extension CoreRPC {
@@ -23,5 +16,5 @@ public extension CoreRPC {
         public let pooledtx: Int
         public let warnings: String
     }
-
+    
 }

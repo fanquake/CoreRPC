@@ -1,14 +1,7 @@
-//
-//  Softfork.swift
-//  CoreRPC
-//
-//  Copyright © 2018 fanquake. All rights reserved.
-//
-
 import Foundation
 
 public extension CoreRPC {
- 
+    
     public struct SoftFork: Codable {
         public let id: String
         public let version: Int

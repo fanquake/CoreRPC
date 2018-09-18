@@ -1,8 +1,15 @@
 # CoreRPC
 
-### Install with Carthage:
-```swift
-github "fanquake/CoreRPC" "master"
+Swift wrapper to the Bitcoin Core RPC interface.
+
+Build:
+```
+swift build -c release
+```
+
+Add to your own project using:
+```
+.package(url: "https://github.com/fanquake/CoreRPC.git", .branch("master"))
 ```
 
 ```swift
