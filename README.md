@@ -4,7 +4,8 @@ Swift wrapper to the Bitcoin Core RPC interface.
 
 Build:
 ```
-swift build -c release
+swift build
+swift test
 ```
 
 Add to your own project using:
