@@ -1,9 +1,10 @@
 import Foundation
+import PromiseKit
 
 public extension CoreRPC {
     
-    func getMiningInfo(completion: @escaping (RPCResult<MiningInfo>) -> Void) {
-        call(method: .getmininginfo, params: nil) { completion($0) }
+    func getMiningInfo() -> Promise<MiningInfo> {
+        return call(method: .getmininginfo, params: nil)
     }
     
     struct MiningInfo: Codable {

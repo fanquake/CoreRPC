@@ -1,8 +1,10 @@
 import Foundation
+import PromiseKit
 
 public extension CoreRPC {
-    func getWalletInfo(completion: @escaping (RPCResult<WalletInfo>) -> Void) {
-        call(method: .getwalletinfo, params: nil) { completion($0) }
+    
+    func getWalletInfo() -> Promise<WalletInfo> {
+        return call(method: .getwalletinfo, params: nil)
     }
     
     struct WalletInfo: Codable {
