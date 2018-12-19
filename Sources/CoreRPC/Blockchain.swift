@@ -4,11 +4,11 @@ import PromiseKit
 public extension CoreRPC {
     
     func getBlockchainInfo() -> Promise<BlockchainInfo> {
-        return call(method: .getblockchaininfo, params: nil)
+        return call(method: .getblockchaininfo, params: Empty())
     }
     
     func getBlockCount() -> Promise<Int> {
-        return call(method: .getblockcount, params: nil)
+        return call(method: .getblockcount, params: Empty())
     }
     
     func getBlockHash(block: Int) -> Promise<String> {
@@ -18,26 +18,37 @@ public extension CoreRPC {
     // verbosity = 0
     // Returns a hex encoded string
     func getSerializedBlock(hash: String) -> Promise<String> {
-        return call(method: .getblock, params: [hash, 0])
+        return call(method: .getblock, params: GetBlockParam(hash: hash, verbosity: 0))
     }
     
     // verbosity = 1
     func getBlock(hash: String) -> Promise<Block> {
-        return call(method: .getblock, params: [hash, 1])
+        return call(method: .getblock, params: GetBlockParam(hash: hash, verbosity: 1))
     }
     
     // verbosity = 2
     func getVerboseBlock(hash: String) -> Promise<VerboseBlock> {
-        return call(method: .getblock, params: [hash, 2])
+        return call(method: .getblock, params: GetBlockParam(hash: hash, verbosity: 2))
     }
     
     // TODO: Set?
     func getChainTips() -> Promise<[ChainTip]> {
-        return call(method: .getchaintips, params: nil)
+        return call(method: .getchaintips, params: Empty())
     }
     
     func getDifficulty() -> Promise<Double> {
-        return call(method: .getdifficulty, params: nil)
+        return call(method: .getdifficulty, params: Empty())
+    }
+    
+    struct GetBlockParam: Encodable {
+        let hash : String
+        let verbosity: Int
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.unkeyedContainer()
+            try container.encode(hash)
+            try container.encode(verbosity)
+        }
     }
     
     struct ChainTip: Codable {

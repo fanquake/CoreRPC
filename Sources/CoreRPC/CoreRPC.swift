@@ -2,21 +2,31 @@ import Foundation
 import PromiseKit
 import PMKFoundation
 
-public struct RPCError: Codable {
+public struct RPCError: Decodable {
     public let code: RPCErrorCode.RawValue?
     public let message: String
 }
 
-public struct RPCResult<T: Codable>: Codable {
+public struct RPCResult<T: Decodable>: Decodable {
     public let id: String?
     public let error: RPCError?
     public let result: T?
 }
 
+public struct BodyContent<P: Encodable>: Encodable {
+    let jsonrpc = 1.0
+    let id = "CoreRPC"
+    let method: RPCMethod.RawValue
+    let params: P
+}
+
+public struct Empty : Encodable {}
+
 public class CoreRPC {
     
     let connection: URLSession
     let decoder: JSONDecoder
+    let encoder: JSONEncoder
     var dataTask: URLSessionDataTask?
     var request: URLRequest
     
@@ -24,6 +34,7 @@ public class CoreRPC {
     public init(node: URL) {
         connection = URLSession(configuration: .default)
         decoder = JSONDecoder()
+        encoder = JSONEncoder()
         
         request = URLRequest(url: node)
         request.httpMethod = "POST"
@@ -31,24 +42,19 @@ public class CoreRPC {
         request.setValue("CoreRPC/0.1", forHTTPHeaderField: "User-Agent")
     }
     
-    internal func call<T: Codable>(method: RPCMethod, params: Any?) -> Promise<T> {
-        var body: [String: Any] = ["jsonrpc": 1.0,
-                                   "id": "CoreRPC",
-                                   "method": method.rawValue]
+    internal func call<T: Decodable, P: Encodable>(method: RPCMethod, params: P) -> Promise<T> {
         
-        body["params"] = params ?? nil
+        let newBody = BodyContent(method: method.rawValue, params: params)
+        let encoded = try? encoder.encode(newBody)
         
-        let payload = try! JSONSerialization.data(withJSONObject: body)
-        request.httpBody = payload
+        request.httpBody = encoded
         
         return firstly {
             URLSession.shared.dataTask(.promise, with: request)
         }.compactMap {
-            // try decode into RPC result
-            let result = try self.decoder.decode(RPCResult<T>.self, from: $0.data)
-            debugPrint(result)
-            // TODO: Check for errors in here
-            return result.result
+            try self.decoder.decode(RPCResult<T>.self, from: $0.data).result
+        }.map {
+            return $0
         }
     }
 }

@@ -4,7 +4,7 @@ import PromiseKit
 public extension CoreRPC {
     
     func memPoolInfo() -> Promise<MemPoolInfo> {
-        return call(method: .getmempoolinfo, params: nil)
+        return call(method: .getmempoolinfo, params: Empty())
     }
     
     struct MemPoolInfo: Codable {

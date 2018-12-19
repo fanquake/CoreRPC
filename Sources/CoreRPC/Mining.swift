@@ -4,7 +4,7 @@ import PromiseKit
 public extension CoreRPC {
     
     func getMiningInfo() -> Promise<MiningInfo> {
-        return call(method: .getmininginfo, params: nil)
+        return call(method: .getmininginfo, params: Empty())
     }
     
     struct MiningInfo: Codable {
