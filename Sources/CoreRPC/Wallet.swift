@@ -4,11 +4,11 @@ import PromiseKit
 public extension CoreRPC {
     
     func getWalletInfo() -> Promise<WalletInfo> {
-        return call(method: .getwalletinfo, params: nil)
+        return call(method: .getwalletinfo, params: Empty())
     }
     
     func listUnspent() -> Promise<[Unspent]> {
-        return call(method: .listunspent, params: nil)
+        return call(method: .listunspent, params: Empty())
     }
     
     struct Unspent: Codable {

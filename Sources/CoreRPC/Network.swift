@@ -3,7 +3,7 @@ import PromiseKit
 
 public extension CoreRPC {
     func getNetworkInfo() -> Promise<NetworkInfo> {
-        return call(method: .getnetworkinfo, params: nil)
+        return call(method: .getnetworkinfo, params: Empty())
     }
     
     struct Network: Codable {

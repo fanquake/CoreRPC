@@ -4,19 +4,19 @@ import PromiseKit
 public extension CoreRPC {
     
     func getConnectionCount() -> Promise<Int> {
-        return call(method: .getconnectioncount, params: nil)
+        return call(method: .getconnectioncount, params: Empty())
     }
     
     func getMemoryInfo() -> Promise<Memory> {
-        return call(method: .getmemoryinfo, params: nil)
+        return call(method: .getmemoryinfo, params: Empty())
     }
     
     func getNetTotals() -> Promise<NetworkTraffic> {
-        return call(method: .getnettotals, params: nil)
+        return call(method: .getnettotals, params: Empty())
     }
     
     func listBanned() -> Promise<[bannedNode]> {
-        return call(method: .listbanned, params: nil)
+        return call(method: .listbanned, params: Empty())
     }
     
     struct bannedNode: Codable {
