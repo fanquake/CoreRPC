@@ -1,4 +1,6 @@
 import Foundation
+import PromiseKit
+import PMKFoundation
 
 public struct RPCError: Codable {
     public let code: RPCErrorCode.RawValue?
@@ -27,52 +29,26 @@ public class CoreRPC {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("CoreRPC/0.1", forHTTPHeaderField: "User-Agent")
-        request.timeoutInterval = 10.0
     }
     
-    internal func call<T: Codable>(method: RPCMethod, params: Any?, completion: @escaping (RPCResult<T>) -> Void) {
-        
+    internal func call<T: Codable>(method: RPCMethod, params: Any?) -> Promise<T> {
         var body: [String: Any] = ["jsonrpc": 1.0,
                                    "id": "CoreRPC",
                                    "method": method.rawValue]
         
-        if let params = params {
-            body["params"] = params
-        }
+        body["params"] = params ?? nil
         
-        guard let payload = try? JSONSerialization.data(withJSONObject: body) else {
-            print("Could not encode JSON data!")
-            return
-        }
+        let payload = try! JSONSerialization.data(withJSONObject: body)
         request.httpBody = payload
         
-        dataTask = connection.dataTask(with: request) { data, response, error in
-            
-            // DataTask failed
-            guard error == nil else {
-                let msg = error?.localizedDescription ?? "No error message provided!"
-                let rpcError = RPCError.init(code: nil, message: "DataTask error: \(msg)")
-                let result = RPCResult<T>(id: nil, error: rpcError, result: nil)
-                return completion(result)
-            }
-            
-            guard let json = data, let result = try? self.decoder.decode(RPCResult<T>.self, from: json) else {
-                if let data = data {
-                    print(String(bytes: data, encoding: String.Encoding.utf8)!)
-                    let rpcError = RPCError.init(code: nil, message: "Could not decode JSON data: \(data)")
-                    let result = RPCResult<T>(id: nil, error: rpcError, result: nil)
-                    return completion(result)
-                } else {
-                    let rpcError = RPCError.init(code: nil, message: "No data returned!")
-                    let result = RPCResult<T>(id: nil, error: rpcError, result: nil)
-                    return completion(result)
-                }
-            }
-            
-            // Have something to return
-            //debugPrint(String(bytes: data!, encoding: String.Encoding.utf8)!)
-            completion(result)
+        return firstly {
+            URLSession.shared.dataTask(.promise, with: request)
+        }.compactMap {
+            // try decode into RPC result
+            let result = try self.decoder.decode(RPCResult<T>.self, from: $0.data)
+            debugPrint(result)
+            // TODO: Check for errors in here
+            return result.result
         }
-        dataTask?.resume()
     }
 }

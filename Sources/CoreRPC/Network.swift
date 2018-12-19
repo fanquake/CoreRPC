@@ -1,8 +1,9 @@
 import Foundation
+import PromiseKit
 
 public extension CoreRPC {
-    func getNetworkInfo(completion: @escaping (RPCResult<NetworkInfo>) -> Void) {
-        call(method: .getnetworkinfo, params: nil) { completion($0) }
+    func getNetworkInfo() -> Promise<NetworkInfo> {
+        return call(method: .getnetworkinfo, params: nil)
     }
     
     struct Network: Codable {

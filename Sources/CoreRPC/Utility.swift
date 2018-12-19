@@ -1,21 +1,22 @@
 import Foundation
+import PromiseKit
 
 public extension CoreRPC {
     
-    func getConnectionCount(completion: @escaping (RPCResult<Int>) -> Void) {
-        call(method: .getconnectioncount, params: nil) { completion($0) }
+    func getConnectionCount() -> Promise<Int> {
+        return call(method: .getconnectioncount, params: nil)
     }
     
-    func getMemoryInfo(completion: @escaping (RPCResult<Memory>) -> Void) {
-        call(method: .getmemoryinfo, params: nil) { completion($0) }
+    func getMemoryInfo() -> Promise<Memory> {
+        return call(method: .getmemoryinfo, params: nil)
     }
     
-    func getNetTotals(completion: @escaping (RPCResult<NetworkTraffic>) -> Void) {
-        call(method: .getnettotals, params: nil) { completion($0) }
+    func getNetTotals() -> Promise<NetworkTraffic> {
+        return call(method: .getnettotals, params: nil)
     }
     
-    func listBanned(completion: @escaping (RPCResult<[bannedNode]>) -> Void) {
-        call(method: .listbanned, params: nil) { completion($0) }
+    func listBanned() -> Promise<[bannedNode]> {
+        return call(method: .listbanned, params: nil)
     }
     
     struct bannedNode: Codable {

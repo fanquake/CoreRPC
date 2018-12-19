@@ -1,9 +1,10 @@
 import Foundation
+import PromiseKit
 
 public extension CoreRPC {
     
-    func getMemPoolInfo(completion: @escaping (RPCResult<MemPoolInfo>) -> Void) {
-        call(method: .getmempoolinfo, params: nil) { completion($0) }
+    func memPoolInfo() -> Promise<MemPoolInfo> {
+        return call(method: .getmempoolinfo, params: nil)
     }
     
     struct MemPoolInfo: Codable {

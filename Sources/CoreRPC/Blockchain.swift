@@ -1,42 +1,43 @@
 import Foundation
+import PromiseKit
 
 public extension CoreRPC {
     
-    func getBlockchainInfo(completion: @escaping (RPCResult<BlockchainInfo>) -> Void) {
-        call(method: .getblockchaininfo, params: nil) { completion($0) }
+    func getBlockchainInfo() -> Promise<BlockchainInfo> {
+        return call(method: .getblockchaininfo, params: nil)
     }
     
-    func getBlockCount(completion: @escaping (RPCResult<Int>) -> Void) {
-        call(method: .getblockcount, params: nil) { completion($0) }
+    func getBlockCount() -> Promise<Int> {
+        return call(method: .getblockcount, params: nil)
     }
     
-    func getBlockHash(block: Int, completion: @escaping (RPCResult<String>) -> Void) {
-        call(method: .getblockhash, params: [block]) { completion($0) }
+    func getBlockHash(block: Int) -> Promise<String> {
+        return call(method: .getblockhash, params: [block])
     }
     
     // verbosity = 0
     // Returns a hex encoded string
-    func getSerializedBlock(hash: String, completion: @escaping (RPCResult<String>) -> Void) {
-        call(method: .getblock, params: [hash, 0]) { completion($0) }
+    func getSerializedBlock(hash: String) -> Promise<String> {
+        return call(method: .getblock, params: [hash, 0])
     }
     
     // verbosity = 1
-    func getBlock(hash: String, completion: @escaping (RPCResult<Block>) -> Void) {
-        call(method: .getblock, params: [hash, 1]) { completion($0) }
+    func getBlock(hash: String) -> Promise<Block> {
+        return call(method: .getblock, params: [hash, 1])
     }
     
     // verbosity = 2
-    func getVerboseBlock(hash: String, completion: @escaping (RPCResult<VerboseBlock>) -> Void) {
-        call(method: .getblock, params: [hash, 2]) { completion($0) }
+    func getVerboseBlock(hash: String) -> Promise<VerboseBlock> {
+        return call(method: .getblock, params: [hash, 2])
     }
     
     // TODO: Set?
-    func getChainTips(completion: @escaping (RPCResult<[ChainTip]>) -> Void) {
-        call(method: .getchaintips, params: nil) { completion($0) }
+    func getChainTips() -> Promise<[ChainTip]> {
+        return call(method: .getchaintips, params: nil)
     }
     
-    func getDifficulty(completion: @escaping (RPCResult<Double>) -> Void) {
-        call(method: .getdifficulty, params: nil) { completion($0) }
+    func getDifficulty() -> Promise<Double> {
+        return call(method: .getdifficulty, params: nil)
     }
     
     struct ChainTip: Codable {
