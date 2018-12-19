@@ -7,6 +7,24 @@ public extension CoreRPC {
         return call(method: .getwalletinfo, params: nil)
     }
     
+    func listUnspent() -> Promise<[Unspent]> {
+        return call(method: .listunspent, params: nil)
+    }
+    
+    struct Unspent: Codable {
+        let address: String
+        public let amount: Double
+        let confirmations: Int
+        let label: String?
+        let redeemScript: String?
+        let scriptPubKey: String
+        let safe: Bool
+        let solvable: Bool
+        let spendable: Bool
+        let txid: String
+        let vout: Int
+    }
+    
     struct WalletInfo: Codable {
         public let balance: Double // the total confirmed balance of the wallet
         public let hdseedid: String? // the Hash160 of the HD seed (only present when HD is enabled)

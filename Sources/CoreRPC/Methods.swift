@@ -16,4 +16,5 @@ public enum RPCMethod: String {
     case getnewaddress = "getnewaddress"
     case getwalletinfo = "getwalletinfo"
     case listbanned = "listbanned"
+    case listunspent = "listunspent"
 }
