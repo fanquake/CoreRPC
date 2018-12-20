@@ -6,7 +6,7 @@ public extension CoreRPC {
     }
     
     struct WalletInfo: Codable {
-        public let balance: Int // the total confirmed balance of the wallet
+        public let balance: Double // the total confirmed balance of the wallet
         public let hdseedid: String? // the Hash160 of the HD seed (only present when HD is enabled)
         public let hdmasterkeyid: String? // alias to hdseedid
         public let immature_balance: Int // the total immature balance of the wallet
