@@ -1,32 +1,38 @@
 # CoreRPC
 
-Swift wrapper to the Bitcoin Core RPC interface.
+Swift wrapper for the [Bitcoin Core](https://github.com/bitcoin/bitcoin) [RPC](https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs).
 
 Build:
 ```
 swift build
 swift test
+
+If you want an Xcode project:
+swift package generate-xcodeproj
 ```
 
-Add to your own project using:
+Add to your own project with:
 ```
-.package(url: "https://github.com/fanquake/CoreRPC.git", .branch("master"))
+.package(url: "https://github.com/fanquake/CoreRPC", .branch("master"))
 ```
 
 ```swift
 import CoreRPC
+import PromiseKit
 
 let node = URL(string: "http://username:password@127.0.0.1:18332") // testnet
 let rpc = CoreRPC(url: node)
 
-rpc.getVerboseBlock(hash: "0000000095fab1da6dfa0a7169702e79e617b59afbcf7c00e5aaa1462abc1ac7") { block in
-    guard let b = block.result else { return }
+firstly {
+    rpc.getVerboseBlock(hash: "0000000014e6ae5aef5b7b660b160b7572fe14b95609fefb6f87c2d2e33a5fdd")
+}.done { block in
+    print(block.confirmations, block.merkleroot)
+    // 31165 "d20cdbe39d1528bacfab6f7a3c16d576aeae6e8fb993193692a918a7c5002450"
 
-    print(b.confirmations, b.merkleroot)
-    // 90 f9a2f70d36811783840a0aaf300f6f6bae04a156d88db6d17f71a5783bfd66e5
-
-    let coinbase = b.tx.filter({ $0.isCoinbaseTx() })
+    let coinbase = block.tx.filter({ $0.isCoinbaseTx() })
     print(coinbase.first!.txid)
-    // a08fe2730882a45b26ec2937bd9da522d8aa16f43bf7c48cbb6f8ca8401fa098
+    // "5b824f055bc4ea8763a817bd951c53f38f81d3c4f2066c6eee79acbad2819db7"
+}.catch { err in
+    debugPrint(err)
 }
 ```
