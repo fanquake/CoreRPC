@@ -12,6 +12,25 @@ public extension CoreRPC {
     func fundRawTransaction(hex: String) -> Promise<FundedRawTransaction> {
         return call(method: .fundrawtransaction, params: [hex])
     }
+
+    public struct SignedRawTransaction: Decodable {
+
+        public struct SigningError: Decodable {
+            public let txid: String
+            public let vout: Int
+            public let scriptSig: String
+            public let sequence: Int
+            public let error: String
+        }
+
+        public let complete: Bool
+        public let errors: [SigningError]?
+        public let hex: String
+    }
+
+    func signRawTransactionWithWallet(hex: String) -> Promise<SignedRawTransaction> {
+        return call(method: .signrawtransactionwithwallet, params: [hex])
+    }
     
     public struct Transaction: Codable {
         public let hash: String

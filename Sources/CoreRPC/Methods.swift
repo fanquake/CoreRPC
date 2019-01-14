@@ -18,4 +18,5 @@ public enum RPCMethod: String, Encodable {
     case getwalletinfo = "getwalletinfo"
     case listbanned = "listbanned"
     case listunspent = "listunspent"
+    case signrawtransactionwithwallet = "signrawtransactionwithwallet"
 }
