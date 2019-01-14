@@ -1,6 +1,17 @@
 import Foundation
+import PromiseKit
 
 public extension CoreRPC {
+
+    public struct FundedRawTransaction: Decodable {
+        public let hex: String
+        public let fee: Double
+        public let changepos: Int
+    }
+
+    func fundRawTransaction(hex: String) -> Promise<FundedRawTransaction> {
+        return call(method: .fundrawtransaction, params: [hex])
+    }
     
     public struct Transaction: Codable {
         public let hash: String
