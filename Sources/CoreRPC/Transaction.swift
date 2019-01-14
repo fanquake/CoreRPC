@@ -31,6 +31,10 @@ public extension CoreRPC {
     func signRawTransactionWithWallet(hex: String) -> Promise<SignedRawTransaction> {
         return call(method: .signrawtransactionwithwallet, params: [hex])
     }
+
+    func sendrawtransaction(hex: String) -> Promise<String> {
+        return call(method: .sendrawtransaction, params: [hex])
+    }
     
     public struct Transaction: Codable {
         public let hash: String
