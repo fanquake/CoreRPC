@@ -18,17 +18,17 @@ public extension CoreRPC {
     // verbosity = 0
     // Returns a hex encoded string
     func getSerializedBlock(hash: String) -> Promise<String> {
-        return call(method: .getblock, params: GetBlockParam(hash: hash, verbosity: 0))
+        return call(method: .getblock, params: GetBlockParam(blockhash: hash, verbosity: 0))
     }
     
     // verbosity = 1
     func getBlock(hash: String) -> Promise<Block> {
-        return call(method: .getblock, params: GetBlockParam(hash: hash, verbosity: 1))
+        return call(method: .getblock, params: GetBlockParam(blockhash: hash, verbosity: 1))
     }
     
     // verbosity = 2
     func getVerboseBlock(hash: String) -> Promise<VerboseBlock> {
-        return call(method: .getblock, params: GetBlockParam(hash: hash, verbosity: 2))
+        return call(method: .getblock, params: GetBlockParam(blockhash: hash, verbosity: 2))
     }
     
     // TODO: Set?
@@ -41,14 +41,8 @@ public extension CoreRPC {
     }
     
     struct GetBlockParam: Encodable {
-        let hash : String
+        let blockhash : String
         let verbosity: Int
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.unkeyedContainer()
-            try container.encode(hash)
-            try container.encode(verbosity)
-        }
     }
     
     struct ChainTip: Codable {
