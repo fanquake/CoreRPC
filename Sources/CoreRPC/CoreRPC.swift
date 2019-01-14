@@ -3,7 +3,7 @@ import PromiseKit
 import PMKFoundation
 
 public struct RPCError: Decodable {
-    public let code: RPCErrorCode.RawValue?
+    public let code: RPCErrorCode
     public let message: String
 }
 
@@ -13,14 +13,12 @@ public struct RPCResult<T: Decodable>: Decodable {
     public let result: T?
 }
 
-public struct BodyContent<P: Encodable>: Encodable {
-    let jsonrpc = 1.0
-    let id = "CoreRPC"
-    let method: RPCMethod.RawValue
-    let params: P
-}
-
 public struct Empty : Encodable {}
+
+public enum CoreRPCError: Error {
+    case decodingFailed(String)
+    case callFailed(RPCMethod, RPCErrorCode, String)
+}
 
 public class CoreRPC {
     
@@ -41,10 +39,17 @@ public class CoreRPC {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("CoreRPC/0.1", forHTTPHeaderField: "User-Agent")
     }
+
+    struct BodyContent<P: Encodable>: Encodable {
+        let jsonrpc = 1.0
+        let id = "CoreRPC"
+        let method: RPCMethod
+        let params: P
+    }
     
     internal func call<T: Decodable, P: Encodable>(method: RPCMethod, params: P) -> Promise<T> {
         
-        let newBody = BodyContent(method: method.rawValue, params: params)
+        let newBody = BodyContent(method: method, params: params)
         let encoded = try? encoder.encode(newBody)
         
         request.httpBody = encoded
@@ -52,7 +57,19 @@ public class CoreRPC {
         return firstly {
             URLSession.shared.dataTask(.promise, with: request)
         }.compactMap {
-            try self.decoder.decode(RPCResult<T>.self, from: $0.data).result
+            let rpcResult: RPCResult<T>
+
+            do {
+                rpcResult = try self.decoder.decode(RPCResult<T>.self, from: $0.data)
+            } catch {
+                throw CoreRPCError.decodingFailed(error.localizedDescription)
+            }
+
+            if let error = rpcResult.error {
+                throw CoreRPCError.callFailed(method, error.code, error.message)
+            }
+
+            return rpcResult.result
         }.map {
             return $0
         }

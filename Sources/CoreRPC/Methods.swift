@@ -1,6 +1,6 @@
 import Foundation
 
-public enum RPCMethod: String {
+public enum RPCMethod: String, Encodable {
     case getblockchaininfo = "getblockchaininfo"
     case getblock = "getblock"
     case getblockcount = "getblockcount"
