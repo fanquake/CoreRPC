@@ -1,6 +1,7 @@
 import Foundation
 
 public enum RPCMethod: String, Encodable {
+    case createrawtransaction = "createrawtransaction"
     case fundrawtransaction = "fundrawtransaction"
     case getblockchaininfo = "getblockchaininfo"
     case getblock = "getblock"
