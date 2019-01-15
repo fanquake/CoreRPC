@@ -18,7 +18,7 @@ public struct Empty : Encodable {}
 public enum CoreRPCError: Error {
     case callFailed(RPCMethod, RPCErrorCode, String)
     case decodingFailed(String)
-    case missingEnvCredentails
+    case missingEnvCredentials
     case invalidURL
 }
 
@@ -34,7 +34,7 @@ public class CoreRPC {
 
         guard let username = ProcessInfo.processInfo.environment["CORERPC_USER"],
             let password = ProcessInfo.processInfo.environment["CORERPC_PASS"] else {
-                throw CoreRPCError.missingEnvCredentails
+                throw CoreRPCError.missingEnvCredentials
         }
 
         connection = URLSession(configuration: .default)
