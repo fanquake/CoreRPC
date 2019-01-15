@@ -16,8 +16,10 @@ public struct RPCResult<T: Decodable>: Decodable {
 public struct Empty : Encodable {}
 
 public enum CoreRPCError: Error {
-    case decodingFailed(String)
     case callFailed(RPCMethod, RPCErrorCode, String)
+    case decodingFailed(String)
+    case missingEnvCredentails
+    case invalidURL
 }
 
 public class CoreRPC {
@@ -27,14 +29,28 @@ public class CoreRPC {
     let encoder: JSONEncoder
     var dataTask: URLSessionDataTask?
     var request: URLRequest
-    
-    // TODO: Set port and chain via flag/param
-    public init(node: URL) {
+
+    public init(url: URL) throws {
+
+        guard let username = ProcessInfo.processInfo.environment["CORERPC_USER"],
+            let password = ProcessInfo.processInfo.environment["CORERPC_PASS"] else {
+                throw CoreRPCError.missingEnvCredentails
+        }
+
         connection = URLSession(configuration: .default)
         decoder = JSONDecoder()
         encoder = JSONEncoder()
-        
-        request = URLRequest(url: node)
+
+
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        components?.user = username
+        components?.password = password
+
+        guard let rpc = components?.url else {
+            throw CoreRPCError.invalidURL
+        }
+
+        request = URLRequest(url: rpc)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("CoreRPC/0.1", forHTTPHeaderField: "User-Agent")
