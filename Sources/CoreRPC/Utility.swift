@@ -6,9 +6,14 @@ public extension CoreRPC {
     func getConnectionCount() -> Promise<Int> {
         return call(method: .getconnectioncount, params: Empty())
     }
+
+    public enum MemoryInfoMode: String, Encodable {
+        case stats
+        case mallocinfo
+    }
     
-    func getMemoryInfo() -> Promise<Memory> {
-        return call(method: .getmemoryinfo, params: Empty())
+    func getMemoryInfo(mode: MemoryInfoMode = .stats) -> Promise<MemoryInfo> {
+        return call(method: .getmemoryinfo, params: [mode])
     }
     
     func getNetTotals() -> Promise<NetworkTraffic> {
@@ -42,16 +47,16 @@ public extension CoreRPC {
         public let uploadtarget: UploadTarget
     }
     
-    struct Locked: Codable {
+    struct MemoryInfo: Decodable {
+        public let locked: Locked
+    }
+
+    struct Locked: Decodable {
         public let chunks_free: Int
         public let chunks_used: Int
         public let free: Int
         public let locked: Int
         public let total: Int
         public let used: Int
-    }
-    
-    struct Memory: Codable {
-        public let locked: Locked
     }
 }
