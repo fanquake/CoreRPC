@@ -144,7 +144,7 @@ public extension CoreRPC {
             public let type: String // TODO: scriptPubKeyTypes
         }
         
-        public func isCoinbaseTx() -> Bool {
+        public func isCoinbase() -> Bool {
             return vin.contains(where: {$0.coinbase != nil})
         }
     }
