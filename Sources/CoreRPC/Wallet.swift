@@ -2,6 +2,10 @@ import Foundation
 import PromiseKit
 
 public extension CoreRPC {
+
+    func getAddressInfo(address: String) -> Promise<AddressInfo> {
+        return call(method: .getaddressinfo, params: [address])
+    }
     
     func getWalletInfo() -> Promise<WalletInfo> {
         return call(method: .getwalletinfo, params: Empty())
@@ -9,6 +13,30 @@ public extension CoreRPC {
     
     func listUnspent() -> Promise<[Unspent]> {
         return call(method: .listunspent, params: Empty())
+    }
+
+    struct AddressInfo: Decodable {
+        public let address: String
+        public let desc: String?
+        public let hdkeypath: String?
+        public let hdseedid: String?
+        public let hex: String?
+        public let ischange: Bool
+        public let iscompressed: Bool?
+        public let ismine: Bool
+        public let isscript: Bool
+        public let iswatchonly: Bool
+        public let iswitness: Bool
+        public let label: String? // optional because the default value is ""
+        public let pubkey: String?
+        public let pubkeys: [String]?
+        public let script: Transaction.scriptPubKeyType?
+        public let scriptPubKey: String
+        public let sigsrequired: Int?
+        public let solvable: Bool
+        public let timestamp: Int?
+        public let witness_program: String?
+        public let witness_version: Int?
     }
     
     struct Unspent: Codable {
