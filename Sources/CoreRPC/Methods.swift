@@ -23,4 +23,5 @@ public enum RPCMethod: String, Encodable {
     case logging = "logging"
     case sendrawtransaction = "sendrawtransaction"
     case signrawtransactionwithwallet = "signrawtransactionwithwallet"
+    case uptime = "uptime"
 }

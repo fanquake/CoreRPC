@@ -82,6 +82,10 @@ public extension CoreRPC {
     func listBanned() -> Promise<[bannedNode]> {
         return call(method: .listbanned, params: Empty())
     }
+
+    func uptime() -> Promise<Int> {
+        return call(method: .uptime, params: Empty())
+    }
     
     struct bannedNode: Codable {
         public let address: String
