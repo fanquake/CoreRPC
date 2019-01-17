@@ -18,6 +18,7 @@ public enum RPCMethod: String, Encodable {
     case getnetworkinfo = "getnetworkinfo"
     case getnewaddress = "getnewaddress"
     case getwalletinfo = "getwalletinfo"
+    case help = "help"
     case listbanned = "listbanned"
     case listunspent = "listunspent"
     case logging = "logging"
