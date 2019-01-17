@@ -135,13 +135,25 @@ public extension CoreRPC {
             public let asm: String
             public let hex: String
         }
-        
+
+        public enum scriptPubKeyType: String, Codable {
+            case multisig
+            case nonstandard
+            case nulldata
+            case pubkey
+            case pubkeyhash
+            case scripthash
+            case witness_v0_keyhash
+            case witness_v0_scripthash
+            case witness_unknown
+        }
+
         public struct scriptPubKey: Codable {
             public let addresses: [String]?
             public let asm: String
             public let hex: String
             public let reqSigs: Int?
-            public let type: String // TODO: scriptPubKeyTypes
+            public let type: scriptPubKeyType
         }
         
         public func isCoinbase() -> Bool {
