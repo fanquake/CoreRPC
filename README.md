@@ -2,17 +2,21 @@
 
 Swift wrapper for the [Bitcoin Core](https://github.com/bitcoin/bitcoin) [RPC](https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs).
 
+⚠️ Warning - This repository is not yet ready for use in prodction. ⚠️
+
+I'm targetting an initial release in line with the Bitcoin Core [0.18.0 release](https://bitcoincore.org/en/lifecycle/#schedule).
+
 Build:
-```
+```bash
 swift build
 swift test
 
-If you want an Xcode project:
+# If you want an Xcode project
 swift package generate-xcodeproj
 ```
 
 Add to your own project with:
-```
+```swift
 .package(url: "https://github.com/fanquake/CoreRPC", .branch("master"))
 ```
 
