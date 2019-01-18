@@ -2,9 +2,9 @@
 
 Swift wrapper for the [Bitcoin Core](https://github.com/bitcoin/bitcoin) [RPC](https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs).
 
-⚠️ Warning - This repository is not yet ready for use in prodction. ⚠️
+⚠️ Warning - This repository is not yet ready for use in production. ⚠️
 
-I'm targetting an initial release in line with the Bitcoin Core [0.18.0 release](https://bitcoincore.org/en/lifecycle/#schedule).
+The plan is an initial release in line with the Bitcoin Core [0.18.0 release](https://bitcoincore.org/en/lifecycle/#schedule).
 
 Build:
 ```bash
@@ -41,4 +41,52 @@ firstly {
 }
 ```
 
-An example block explorer type application is available [here](Example/README.md).
+## Swift Playground
+An easy way to try this repo is with a [Swift Playground](https://developer.apple.com/swift-playgrounds).
+```bash
+git clone https://github.com/fanquake/corerpc.git
+
+cd corerpc
+
+swift package generate-xcodeproj
+open corerpc.xcodeproj
+```
+
+Inside Xcode:
+- File -> New -> Playground
+- iOS (Blank) is fine.
+- Name the file `Test.Playground` and save it inside the `corerpc` directory.
+    * Add to: CoreRPC
+    * Group: CoreRPC
+- Create
+
+Copy the following into the Playground:
+```swift
+import CoreRPC
+import Foundation
+import PlaygroundSupport
+import PromiseKit
+
+PlaygroundPage.current.needsIndefiniteExecution = true
+```
+
+Then you can use as normal i.e
+```swift
+let node = URL(string: "http://localhost:8332")!
+let rpc = try CoreRPC.init(url: node)
+
+firstly {
+    rpc.getBlockHash(block: 554000)
+}.then { hash in
+    rpc.getVerboseBlock(hash: hash)
+}.done { block in
+    debugPrint("Tx count: \(block.tx.count)")
+}.catch { error in
+    debugPrint(error)
+}
+```
+
+![Playground](playground.png)
+
+## Testnet Block Explorer
+An example block explorer application is available [here](Example/README.md).
