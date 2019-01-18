@@ -3,3 +3,4 @@
 /Packages
 CoreRPC.xcodeproj
 Package.Resolved
+*.Playground
