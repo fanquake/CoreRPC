@@ -20,6 +20,7 @@ public enum RPCMethod: String, Codable {
     case getnewaddress = "getnewaddress"
     case getrpcinfo = "getrpcinfo"
     case getwalletinfo = "getwalletinfo"
+    case getzmqnotifications = "getzmqnotifications"
     case help = "help"
     case listbanned = "listbanned"
     case listunspent = "listunspent"
