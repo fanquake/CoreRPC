@@ -33,7 +33,7 @@ firstly {
     print(block.confirmations, block.merkleroot)
     // 31165 "d20cdbe39d1528bacfab6f7a3c16d576aeae6e8fb993193692a918a7c5002450"
 
-    let coinbase = block.tx.filter({ $0.isCoinbaseTx() })
+    let coinbase = block.tx.filter({ $0.isCoinbase() })
     print(coinbase.first!.txid)
     // "5b824f055bc4ea8763a817bd951c53f38f81d3c4f2066c6eee79acbad2819db7"
 }.catch { err in
