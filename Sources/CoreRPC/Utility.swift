@@ -2,6 +2,21 @@ import Foundation
 import PromiseKit
 
 public extension CoreRPC {
+
+    struct RPCInfo: Decodable {
+
+        struct ActiveCommand: Decodable {
+            let duration: Int
+            let method: RPCMethod
+        }
+
+        let active_commands: [ActiveCommand]
+    }
+
+    func getRPCInfo() -> Promise<RPCInfo> {
+
+        return call(method: .getrpcinfo, params: Empty())
+    }
     
     func getConnectionCount() -> Promise<Int> {
         return call(method: .getconnectioncount, params: Empty())

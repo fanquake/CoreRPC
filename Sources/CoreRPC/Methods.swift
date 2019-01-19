@@ -1,6 +1,6 @@
 import Foundation
 
-public enum RPCMethod: String, Encodable {
+public enum RPCMethod: String, Codable {
     case createrawtransaction = "createrawtransaction"
     case fundrawtransaction = "fundrawtransaction"
     case generatetoaddress = "generatetoaddress"
@@ -18,6 +18,7 @@ public enum RPCMethod: String, Encodable {
     case getnettotals = "getnettotals"
     case getnetworkinfo = "getnetworkinfo"
     case getnewaddress = "getnewaddress"
+    case getrpcinfo = "getrpcinfo"
     case getwalletinfo = "getwalletinfo"
     case help = "help"
     case listbanned = "listbanned"
