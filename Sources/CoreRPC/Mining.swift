@@ -3,6 +3,18 @@ import PromiseKit
 
 public extension CoreRPC {
 
+    func getNetworkHashPerSecond(nblocks: Int?, height: Int?) -> Promise<Double> {
+
+        struct NetworkHashPerSecond: Encodable {
+            let height: Int?
+            let nblocks: Int?
+        }
+
+        let params = NetworkHashPerSecond(height: height, nblocks: nblocks)
+
+        return call(method: .getnetworkhashps, params: params)
+    }
+
     func generatetoaddress(blocks: Int, address: String, maxtries: Int?) -> Promise<[String]> {
 
         struct generateParams: Encodable {
