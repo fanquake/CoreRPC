@@ -32,25 +32,29 @@ public class CoreRPC {
 
     public init(url: URL) throws {
 
-        guard let username = ProcessInfo.processInfo.environment["CORERPC_USER"],
-            let password = ProcessInfo.processInfo.environment["CORERPC_PASS"] else {
-                throw CoreRPCError.missingEnvCredentials
-        }
-
         connection = URLSession(configuration: .default)
         decoder = JSONDecoder()
         encoder = JSONEncoder()
 
+        if url.user != nil, url.password != nil {
+            request = URLRequest(url: url)
+        } else {
 
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        components?.user = username
-        components?.password = password
+            guard let username = ProcessInfo.processInfo.environment["CORERPC_USER"],
+                let password = ProcessInfo.processInfo.environment["CORERPC_PASS"] else {
+                    throw CoreRPCError.missingEnvCredentials
+            }
 
-        guard let rpc = components?.url else {
-            throw CoreRPCError.invalidURL
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+            components?.user = username
+            components?.password = password
+
+            guard let rpc = components?.url else {
+                throw CoreRPCError.invalidURL
+            }
+            request = URLRequest(url: rpc)
         }
 
-        request = URLRequest(url: rpc)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("CoreRPC/0.1", forHTTPHeaderField: "User-Agent")

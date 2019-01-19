@@ -24,7 +24,7 @@ Add to your own project with:
 import CoreRPC
 import PromiseKit
 
-let node = URL(string: "http://username:password@127.0.0.1:18332") // testnet
+let node = URL(string: "http://localhost:18332") // testnet
 let rpc = CoreRPC(url: node)
 
 firstly {
@@ -41,6 +41,12 @@ firstly {
 }
 ```
 
+### Configuration
+The preferred configuration method is to set `CORERPC_USER` and `CORERPC_PASS` environment variables. 
+If found, they will be inserted into the given URL.
+
+It is also possible to pass a fully formed URL, such as `http://username:password@localhost:8332`.
+
 ## Swift Playground
 An easy way to try this repo is with a [Swift Playground](https://developer.apple.com/swift-playgrounds).
 ```bash
@@ -49,7 +55,7 @@ git clone https://github.com/fanquake/corerpc.git
 cd corerpc
 
 swift package generate-xcodeproj
-open corerpc.xcodeproj
+open CoreRPC.xcodeproj
 ```
 
 Inside Xcode:
@@ -70,9 +76,9 @@ import PromiseKit
 PlaygroundPage.current.needsIndefiniteExecution = true
 ```
 
-Then you can use as normal i.e
+Then you can use as normal. i.e:
 ```swift
-let node = URL(string: "http://localhost:8332")!
+let node = URL(string: "http://username:password@localhost:18332")!
 let rpc = try CoreRPC.init(url: node)
 
 firstly {
