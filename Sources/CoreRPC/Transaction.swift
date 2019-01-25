@@ -3,6 +3,10 @@ import PromiseKit
 
 public extension CoreRPC {
 
+    func getRawTransaction(txid: String) -> Promise<String> {
+        return call(method: .getrawtransaction, params: [txid])
+    }
+
     public struct CreateRawParams: Encodable {
 
         public struct Input: Encodable {
