@@ -3,6 +3,10 @@ import PromiseKit
 
 public extension CoreRPC {
 
+    func decodeRawTransaction(hex: String) -> Promise<Transaction> {
+        return call(method: .decoderawtransaction, params: [hex])
+    }
+
     func getRawTransaction(txid: String) -> Promise<String> {
         return call(method: .getrawtransaction, params: [txid])
     }
@@ -110,7 +114,7 @@ public extension CoreRPC {
     
     public struct Transaction: Codable {
         public let hash: String
-        public let hex: String
+        public let hex: String?
         public let locktime: Int
         public let size: Int
         public let txid: String
