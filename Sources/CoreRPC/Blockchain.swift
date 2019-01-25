@@ -72,6 +72,7 @@ public extension CoreRPC {
         public let tx: [String]
         public let version: Int
         public let versionHex: String
+        public let weight: Int
     }
     
     // verbosity 2 block
@@ -94,6 +95,7 @@ public extension CoreRPC {
         public let tx: [Transaction]
         public let version: Int
         public let versionHex: String
+        public let weight: Int
     }
     
     struct BlockchainInfo: Codable {
