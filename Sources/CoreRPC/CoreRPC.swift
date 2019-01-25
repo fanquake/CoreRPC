@@ -17,7 +17,7 @@ public struct Empty : Encodable {}
 
 public enum CoreRPCError: Error {
     case callFailed(RPCMethod, RPCErrorCode, String)
-    case decodingFailed(String)
+    case decodingFailed(RPCMethod, Error)
     case missingEnvCredentials
     case invalidURL
 }
@@ -82,7 +82,7 @@ public class CoreRPC {
             do {
                 rpcResult = try self.decoder.decode(RPCResult<T>.self, from: $0.data)
             } catch {
-                throw CoreRPCError.decodingFailed(error.localizedDescription)
+                throw CoreRPCError.decodingFailed(method, error)
             }
 
             if let error = rpcResult.error {
