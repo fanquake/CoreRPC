@@ -65,7 +65,7 @@ public extension CoreRPC {
         public let nonce: Int
         public let nextblockhash: String?
         public let nTx: Int
-        public let previousblockhash: String
+        public let previousblockhash: String?
         public let size: Int
         public let strippedsize: Int
         public let time: Int
@@ -87,7 +87,7 @@ public extension CoreRPC {
         public let nonce: Int
         public let nextblockhash: String?
         public let nTx: Int
-        public let previousblockhash: String
+        public let previousblockhash: String?
         public let size: Int
         public let strippedsize: Int
         public let time: Int
