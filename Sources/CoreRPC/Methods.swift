@@ -10,6 +10,7 @@ public enum RPCMethod: String, Codable {
     case getblock = "getblock"
     case getblockcount = "getblockcount"
     case getblockhash = "getblockhash"
+    case getblockstats = "getblockstats"
     case getchaintips = "getchaintips"
     case getconnectioncount = "getconnectioncount"
     case getdifficulty = "getdifficulty"
