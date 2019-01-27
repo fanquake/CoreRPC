@@ -90,8 +90,6 @@ public class CoreRPC {
             }
 
             return rpcResult.result
-        }.map {
-            return $0
         }
     }
 }
