@@ -45,15 +45,24 @@ public extension CoreRPC {
         let verbosity: Int
     }
     
-    struct ChainTip: Codable {
+    struct ChainTip: Decodable {
+
+        public enum Status: String, Decodable {
+            case active // This is the tip of the active main chain, which is certainly valid
+            case headersOnly = "headers-only" // Not all blocks for this branch are available, but the headers are valid
+            case invalid // This branch contains at least one invalid block
+            case validFork = "valid-fork" // This branch is not part of the active chain, but is fully validated
+            case validHeaders = "valid-headers" // All blocks are available for this branch, but they were never fully validated
+        }
+
         public let branchlen: Int
         public let hash: String
         public let height: Int
-        public let status: String
+        public let status: Status
     }
     
     // Verbosity 1 block
-    struct Block: Codable {
+    struct Block: Decodable {
         public let bits: String
         public let chainwork: String
         public let confirmations: Int
@@ -76,7 +85,7 @@ public extension CoreRPC {
     }
     
     // verbosity 2 block
-    struct VerboseBlock: Codable {
+    struct VerboseBlock: Decodable {
         public let bits: String
         public let chainwork: String
         public let confirmations: Int
@@ -98,7 +107,7 @@ public extension CoreRPC {
         public let weight: Int
     }
     
-    struct BlockchainInfo: Codable {
+    struct BlockchainInfo: Decodable {
         public let automatic_pruning: Bool?
         public let bip9_softforks: [String: BIP9SoftFork]
         public let blocks: Int
