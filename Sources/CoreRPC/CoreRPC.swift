@@ -61,7 +61,7 @@ public class CoreRPC {
     }
 
     struct BodyContent<P: Encodable>: Encodable {
-        let jsonrpc = 1.0
+        let jsonrpc = 2.0
         let id = "CoreRPC"
         let method: RPCMethod
         let params: P
