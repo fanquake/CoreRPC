@@ -112,7 +112,7 @@ public extension CoreRPC {
         public let bip9_softforks: [String: BIP9SoftFork]
         public let blocks: Int
         public let bestblockhash: String
-        public let chain: String
+        public let chain: NetworkName
         public let chainwork: String
         public let difficulty: Double
         public let headers: Int
@@ -124,6 +124,12 @@ public extension CoreRPC {
         public let softforks: [SoftFork]
         public let verificationprogress: Double
         public let warnings: String
+    }
+
+    public enum NetworkName: String, Decodable {
+        case main
+        case test
+        case regtest
     }
 }
 

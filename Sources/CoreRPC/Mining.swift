@@ -32,9 +32,9 @@ public extension CoreRPC {
         return call(method: .getmininginfo, params: Empty())
     }
     
-    struct MiningInfo: Codable {
+    struct MiningInfo: Decodable {
         public let blocks: Int
-        public let chain: String
+        public let chain: NetworkName
         public let currentblocktx: Int
         public let currentblockweight: Int
         public let difficulty: Double
