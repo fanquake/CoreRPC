@@ -68,12 +68,12 @@ public class CoreRPC {
     }
     
     internal func call<T: Decodable, P: Encodable>(method: RPCMethod, params: P) -> Promise<T> {
-        
+
         let newBody = BodyContent(method: method, params: params)
         let encoded = try? encoder.encode(newBody)
-        
+
         request.httpBody = encoded
-        
+
         return firstly {
             URLSession.shared.dataTask(.promise, with: request)
         }.compactMap {

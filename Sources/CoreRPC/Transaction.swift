@@ -3,6 +3,10 @@ import PromiseKit
 
 public extension CoreRPC {
 
+    func getTransaction(hex: String) -> Promise<SimpleTransaction> {
+        return call(method: .gettransaction, params: [hex])
+    }
+
     func decodeRawTransaction(hex: String) -> Promise<Transaction> {
         return call(method: .decoderawtransaction, params: [hex])
     }
@@ -110,6 +114,47 @@ public extension CoreRPC {
 
     func sendrawtransaction(hex: String) -> Promise<String> {
         return call(method: .sendrawtransaction, params: [hex])
+    }
+
+    public struct SimpleTransaction: Decodable {
+
+        public enum Replaceable: String {
+            case no
+            case unknown
+            case yes
+        }
+
+        public enum Category: String, Decodable {
+            case immature
+            case generate
+            case orphan
+            case receive
+            case send
+
+        }
+
+        public struct Details: Decodable {
+            public let abandoned: Bool?
+            public let address: String?
+            public let amount: Double
+            public let category: Category
+            public let fee: Double
+            public let label: String?
+            public let vout: Int
+        }
+
+        public let amount: Double
+        //public let bip125-replaceable: Replaceable
+        public let blockhash: String?
+        public let blockindex: Int?
+        public let blocktime: Int?
+        public let confirmations: Int
+        public let details: [Details]
+        public let fee: Double
+        public let hex: String
+        public let time: Int
+        public let timereceived: Int
+        public let txid: String
     }
     
     public struct Transaction: Codable {
