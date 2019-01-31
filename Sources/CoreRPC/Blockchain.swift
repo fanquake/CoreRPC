@@ -2,6 +2,10 @@ import Foundation
 import PromiseKit
 
 public extension CoreRPC {
+
+    func getBestBlockHash() -> Promise<String> {
+        return call(method: .getbestblockhash, params: Empty())
+    }
     
     func getBlockchainInfo() -> Promise<BlockchainInfo> {
         return call(method: .getblockchaininfo, params: Empty())

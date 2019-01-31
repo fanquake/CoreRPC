@@ -6,6 +6,7 @@ public enum RPCMethod: String, Codable {
     case fundrawtransaction = "fundrawtransaction"
     case generatetoaddress = "generatetoaddress"
     case getaddressinfo = "getaddressinfo"
+    case getbestblockhash = "getbestblockhash"
     case getblockchaininfo = "getblockchaininfo"
     case getblock = "getblock"
     case getblockcount = "getblockcount"
