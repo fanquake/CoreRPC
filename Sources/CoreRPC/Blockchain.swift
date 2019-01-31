@@ -18,6 +18,28 @@ public extension CoreRPC {
     func getBlockHash(block: Int) -> Promise<String> {
         return call(method: .getblockhash, params: [block])
     }
+
+    struct BlockHeader: Decodable {
+        let bits: String
+        let chainwork: String
+        let confirmations: Int
+        let difficulty: Double
+        let hash: String
+        let height: Int
+        let mediantime: Int
+        let merkleroot: String
+        let nextblockhash: String?
+        let nonce: Int
+        let nTx: Int
+        let time: Int
+        let previousblockhash: String?
+        let version: Int
+        let versionHex: String
+    }
+
+    func getBlockHeader(hash: String) -> Promise<BlockHeader> {
+        return call(method: .getblockheader, params: [hash])
+    }
     
     // verbosity = 0
     // Returns a hex encoded string
