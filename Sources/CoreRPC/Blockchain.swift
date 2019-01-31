@@ -40,6 +40,18 @@ public extension CoreRPC {
     func getBlockHeader(hash: String) -> Promise<BlockHeader> {
         return call(method: .getblockheader, params: [hash])
     }
+
+    func getSerializedBlockHeader(hash: String) -> Promise<String> {
+
+        struct Params: Encodable {
+            let blockhash: String
+            let verbose: Bool
+        }
+
+        let params = Params(blockhash: hash, verbose: false)
+
+        return call(method: .getblockheader, params: params)
+    }
     
     // verbosity = 0
     // Returns a hex encoded string
