@@ -159,4 +159,8 @@ public extension CoreRPC {
         public let total: Int
         public let used: Int
     }
+
+    func setNetworkActive(active: Bool) -> Promise<Bool> {
+        return call(method: .setnetworkactive, params: [active])
+    }
 }

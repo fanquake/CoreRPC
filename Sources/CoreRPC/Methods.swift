@@ -35,6 +35,7 @@ public enum RPCMethod: String, Codable {
     case listunspent = "listunspent"
     case logging = "logging"
     case sendrawtransaction = "sendrawtransaction"
+    case setnetworkactive = "setnetworkactive"
     case signrawtransactionwithwallet = "signrawtransactionwithwallet"
     case uptime = "uptime"
 }
