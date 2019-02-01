@@ -43,4 +43,15 @@ public extension CoreRPC {
         public let version: Int
         public let warnings: String
     }
+
+    func getNodeAddresses(count: Int? = 1) -> Promise<[NodeAddress]> {
+        return call(method: .getnodeaddresses, params: [count])
+    }
+
+    struct NodeAddress: Decodable {
+        let address: String
+        let port: Int
+        let services: Int
+        let time: Int
+    }
 }
