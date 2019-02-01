@@ -24,6 +24,7 @@ public enum RPCMethod: String, Codable {
     case getnetworkinfo = "getnetworkinfo"
     case getnewaddress = "getnewaddress"
     case getnodeaddresses = "getnodeaddresses"
+    case getpeerinfo = "getpeerinfo"
     case getrawtransaction = "getrawtransaction"
     case getrpcinfo = "getrpcinfo"
     case gettransaction = "gettransaction"

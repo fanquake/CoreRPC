@@ -54,4 +54,57 @@ public extension CoreRPC {
         let services: Int
         let time: Int
     }
+
+    func getPeerInfo() -> Promise<[PeerInfo]> {
+        return call(method: .getpeerinfo, params: Empty())
+    }
+
+    struct PeerInfo: Decodable {
+
+        enum MessageType: String, CodingKey, Decodable {
+            case addr
+            case feefilter
+            case getaddr
+            case getdata
+            case getheaders
+            case headers
+            case inv
+            case ping
+            case pong
+            case sendcmpct
+            case sendheaders
+            case tx
+            case verack
+            case version
+        }
+
+        let addnode: Bool
+        let addr: String
+        let addrbind: String
+        let addrlocal: String
+        let banscore: Int
+        let bytesrecv: Int
+        //let bytesrecv_per_msg:
+        let bytessent: Int
+        //let bytessent_per_msg:
+        let conntime: Int
+        let id: Int
+        let inbound: Bool
+        let inflight: [Int]
+        let lastrecv: Int
+        let lastsend: Int
+        let minfeefilter: Double
+        let minping: Double
+        let pingtime: Double
+        let pingwait: Double?
+        let relaytxes: Bool
+        let services: String
+        let startingheight: Int
+        let subver: String
+        let synced_blocks: Int
+        let synced_headers: Int
+        let timeoffset: Int
+        let version: Int
+        let whitelisted: Bool
+    }
 }
