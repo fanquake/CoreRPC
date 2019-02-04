@@ -20,6 +20,19 @@ public enum CoreRPCError: Error {
     case decodingFailed(RPCMethod, Error)
     case missingEnvCredentials
     case invalidURL
+
+    public func message() -> String {
+        switch self {
+        case .callFailed(let method, _, let error):
+            return "Call \(method.rawValue) failed with: \(error)."
+        case .decodingFailed(let method, let error):
+            return "Decoding response from \(method.rawValue) failed with \(error.localizedDescription)."
+        case .missingEnvCredentials:
+            return "Credentials have not been set."
+        case .invalidURL:
+            return "URL is invalid."
+        }
+    }
 }
 
 public class CoreRPC {
