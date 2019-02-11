@@ -2,7 +2,38 @@ import Foundation
 import PromiseKit
 
 public extension CoreRPC {
-    
+
+    struct MemPoolEntry: Decodable {
+
+        struct Fees: Decodable {
+            let ancestor: Double
+            let base: Double
+            let descendant: Double
+            let modified: Double
+        }
+
+        let ancestorcount: Int
+        let ancestorfees: Int
+        let ancestorsize: Int
+        // TODO: let bip125-replaceable: Bool
+        let depends: [String]
+        let descendantcount: Int
+        let descendantfees: Int
+        let descendantsize: Int
+        let fee: Double
+        let fees: Fees
+        let height: Int
+        let modifiedfee: Double
+        let size: Int
+        let spentby: [String]
+        let time: Int
+        let wtxid: String
+    }
+
+    func getMempoolEntry(txid: String) -> Promise<MemPoolEntry> {
+        return call(method: .getmempoolentry, params: [txid])
+    }
+
     func memPoolInfo() -> Promise<MemPoolInfo> {
         return call(method: .getmempoolinfo, params: Empty())
     }
