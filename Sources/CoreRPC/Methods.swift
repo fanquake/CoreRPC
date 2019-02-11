@@ -3,6 +3,7 @@ import Foundation
 public enum RPCMethod: String, Codable {
     case createrawtransaction = "createrawtransaction"
     case decoderawtransaction = "decoderawtransaction"
+    case estimatesmartfee = "estimatesmartfee"
     case fundrawtransaction = "fundrawtransaction"
     case generatetoaddress = "generatetoaddress"
     case getaddressinfo = "getaddressinfo"
