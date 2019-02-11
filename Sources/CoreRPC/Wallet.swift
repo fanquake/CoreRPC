@@ -15,6 +15,15 @@ public extension CoreRPC {
         return call(method: .listunspent, params: Empty())
     }
 
+    struct LoadedWallet: Decodable {
+        let name: String
+        let warning: String
+    }
+
+    func loadWallet(name: String) -> Promise<LoadedWallet> {
+        return call(method: .loadwallet, params: [name])
+    }
+
     struct AddressInfo: Decodable {
         public let address: String
         public let desc: String?

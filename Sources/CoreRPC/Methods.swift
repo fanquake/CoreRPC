@@ -36,6 +36,7 @@ public enum RPCMethod: String, Codable {
     case help = "help"
     case listbanned = "listbanned"
     case listunspent = "listunspent"
+    case loadwallet = "loadwallet"
     case logging = "logging"
     case sendrawtransaction = "sendrawtransaction"
     case setnetworkactive = "setnetworkactive"
