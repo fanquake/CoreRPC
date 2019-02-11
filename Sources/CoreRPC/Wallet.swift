@@ -6,6 +6,24 @@ public extension CoreRPC {
     func getAddressInfo(address: String) -> Promise<AddressInfo> {
         return call(method: .getaddressinfo, params: [address])
     }
+
+    public enum AddressType: String, Encodable {
+        case bech32
+        case legacy
+        case p2sh_segwit = "p2sh-segwit"
+    }
+
+    func getNewAddress(label: String?, type: AddressType?) -> Promise<String> {
+
+        struct newAddressParams: Encodable {
+            let label: String?
+            let address_type: AddressType?
+        }
+
+        let params = newAddressParams(label: label, address_type: type)
+
+        return call(method: .getnewaddress, params: params)
+    }
     
     func getWalletInfo() -> Promise<WalletInfo> {
         return call(method: .getwalletinfo, params: Empty())
