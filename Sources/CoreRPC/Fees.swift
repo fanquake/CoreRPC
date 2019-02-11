@@ -26,4 +26,15 @@ public extension CoreRPC {
 
         return call(method: .estimatesmartfee, params: params)
     }
+
+    func setTxFee(fee: Decimal) -> Promise<Bool> {
+
+        struct setTxFeeParams: Encodable {
+            let amount: Decimal
+        }
+
+        let params = setTxFeeParams(amount: fee)
+
+        return call(method: .settxfee, params: params)
+    }
 }
