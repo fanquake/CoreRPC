@@ -3,13 +3,13 @@ import PromiseKit
 
 public extension CoreRPC {
 
-    public enum EstimateMode: String, Encodable {
+    public enum EstimateMode: String, Codable {
         case CONSERVATIVE
         case ECONOMICAL
         case UNSET
     }
 
-    struct EstimatedFee: Decodable {
+    struct EstimatedFee: Codable {
         let blocks: Int
         let errors: [String]?
         let feerate: Double?
@@ -17,7 +17,7 @@ public extension CoreRPC {
 
     func estimateSmartFee(target: Int, mode: EstimateMode?) -> Promise<EstimatedFee> {
 
-        struct estimateParams: Encodable {
+        struct estimateParams: Codable {
             let conf_target: Int?
             let estimate_mode: EstimateMode?
         }
@@ -29,7 +29,7 @@ public extension CoreRPC {
 
     func setTxFee(fee: Decimal) -> Promise<Bool> {
 
-        struct setTxFeeParams: Encodable {
+        struct setTxFeeParams: Codable {
             let amount: Decimal
         }
 

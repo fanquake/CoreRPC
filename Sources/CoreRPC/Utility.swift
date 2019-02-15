@@ -3,9 +3,9 @@ import PromiseKit
 
 public extension CoreRPC {
 
-    struct RPCInfo: Decodable {
+    struct RPCInfo: Codable {
 
-        struct ActiveCommand: Decodable {
+        struct ActiveCommand: Codable {
             let duration: Int
             let method: RPCMethod
         }
@@ -22,7 +22,7 @@ public extension CoreRPC {
         return call(method: .getconnectioncount, params: Empty())
     }
 
-    public enum LoggingCategory: String, Encodable {
+    public enum LoggingCategory: String, Codable {
         case addrman
         case bench
         case cmpctblock
@@ -53,7 +53,7 @@ public extension CoreRPC {
         // case zero = "0"
     }
 
-    struct LoggingInfo: Decodable {
+    struct LoggingInfo: Codable {
         public let addrman: Bool
         public let bench: Bool
         public let cmpctblock: Bool
@@ -81,7 +81,7 @@ public extension CoreRPC {
         return call(method: .logging, params: [include, exclude])
     }
 
-    public enum MemoryInfoMode: String, Encodable {
+    public enum MemoryInfoMode: String, Codable {
         case stats
         case mallocinfo
     }
@@ -129,11 +129,11 @@ public extension CoreRPC {
         public let uploadtarget: UploadTarget
     }
     
-    struct MemoryInfo: Decodable {
+    struct MemoryInfo: Codable {
         public let locked: Locked
     }
 
-    struct Locked: Decodable {
+    struct Locked: Codable {
         public let chunks_free: Int
         public let chunks_used: Int
         public let free: Int

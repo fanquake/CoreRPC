@@ -3,7 +3,7 @@ import PromiseKit
 
 public extension CoreRPC {
 
-    public enum BlockStat: String, Encodable {
+    public enum BlockStat: String, Codable {
         case avgfee
         case avgfeerate
         case avgtxsize
@@ -35,7 +35,7 @@ public extension CoreRPC {
         case utxo_size_inc
     }
 
-    public struct BlockStats: Decodable {
+    public struct BlockStats: Codable {
         public let avgfee: Int?
         public let avgfeerate: Int?
         public let avgtxsize: Int?

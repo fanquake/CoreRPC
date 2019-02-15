@@ -2,7 +2,7 @@ import Foundation
 
 // https://github.com/bitcoin/bitcoin/blob/master/src/rpc/protocol.h
 
-public enum RPCErrorCode: Int, Decodable {
+public enum RPCErrorCode: Int, Codable {
     // Standard JSON-RPC 2.0 errors
     case RPC_INVALID_REQUEST = -32600
     case RPC_METHOD_NOT_FOUND = -32601

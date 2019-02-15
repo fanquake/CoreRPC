@@ -3,9 +3,9 @@ import PromiseKit
 
 public extension CoreRPC {
 
-    public struct ZMQNotification: Decodable {
+    public struct ZMQNotification: Codable {
 
-        public enum Notification: String, Decodable {
+        public enum Notification: String, Codable {
             case pubhashblock
             case pubhashtx
             case pubrawblock

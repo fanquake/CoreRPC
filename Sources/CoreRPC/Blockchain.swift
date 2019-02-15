@@ -19,7 +19,7 @@ public extension CoreRPC {
         return call(method: .getblockhash, params: [block])
     }
 
-    struct BlockHeader: Decodable {
+    struct BlockHeader: Codable {
         let bits: String
         let chainwork: String
         let confirmations: Int
@@ -43,7 +43,7 @@ public extension CoreRPC {
 
     func getSerializedBlockHeader(hash: String) -> Promise<String> {
 
-        struct Params: Encodable {
+        struct Params: Codable {
             let blockhash: String
             let verbose: Bool
         }
@@ -78,14 +78,14 @@ public extension CoreRPC {
         return call(method: .getdifficulty, params: Empty())
     }
     
-    struct GetBlockParam: Encodable {
+    struct GetBlockParam: Codable {
         let blockhash : String
         let verbosity: Int
     }
     
-    struct ChainTip: Decodable {
+    struct ChainTip: Codable {
 
-        public enum Status: String, Decodable {
+        public enum Status: String, Codable {
             case active // This is the tip of the active main chain, which is certainly valid
             case headersOnly = "headers-only" // Not all blocks for this branch are available, but the headers are valid
             case invalid // This branch contains at least one invalid block
@@ -100,7 +100,7 @@ public extension CoreRPC {
     }
     
     // Verbosity 1 block
-    struct Block: Decodable {
+    struct Block: Codable {
         public let bits: String
         public let chainwork: String
         public let confirmations: Int
@@ -123,7 +123,7 @@ public extension CoreRPC {
     }
     
     // verbosity 2 block
-    struct VerboseBlock: Decodable {
+    struct VerboseBlock: Codable {
         public let bits: String
         public let chainwork: String
         public let confirmations: Int
@@ -145,7 +145,7 @@ public extension CoreRPC {
         public let weight: Int
     }
     
-    struct BlockchainInfo: Decodable {
+    struct BlockchainInfo: Codable {
         public let automatic_pruning: Bool?
         public let bip9_softforks: [String: BIP9SoftFork]
         public let blocks: Int
@@ -164,7 +164,7 @@ public extension CoreRPC {
         public let warnings: String
     }
 
-    public enum NetworkName: String, Decodable {
+    public enum NetworkName: String, Codable {
         case main
         case test
         case regtest

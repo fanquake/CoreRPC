@@ -5,7 +5,7 @@ public extension CoreRPC {
 
     func getNetworkHashPerSecond(nblocks: Int?, height: Int?) -> Promise<Double> {
 
-        struct NetworkHashPerSecond: Encodable {
+        struct NetworkHashPerSecond: Codable {
             let height: Int?
             let nblocks: Int?
         }
@@ -17,7 +17,7 @@ public extension CoreRPC {
 
     func generatetoaddress(blocks: Int, address: String, maxtries: Int?) -> Promise<[String]> {
 
-        struct generateParams: Encodable {
+        struct generateParams: Codable {
             let nblocks: Int
             let address: String
             let maxtries: Int?
@@ -32,7 +32,7 @@ public extension CoreRPC {
         return call(method: .getmininginfo, params: Empty())
     }
     
-    struct MiningInfo: Decodable {
+    struct MiningInfo: Codable {
         public let blocks: Int
         public let chain: NetworkName
         public let currentblocktx: Int

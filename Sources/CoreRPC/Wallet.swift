@@ -7,7 +7,7 @@ public extension CoreRPC {
         return call(method: .getaddressinfo, params: [address])
     }
 
-    public enum AddressType: String, Encodable {
+    public enum AddressType: String, Codable {
         case bech32
         case legacy
         case p2sh_segwit = "p2sh-segwit"
@@ -15,7 +15,7 @@ public extension CoreRPC {
 
     func getNewAddress(label: String?, type: AddressType?) -> Promise<String> {
 
-        struct newAddressParams: Encodable {
+        struct newAddressParams: Codable {
             let label: String?
             let address_type: AddressType?
         }
@@ -37,7 +37,7 @@ public extension CoreRPC {
         return call(method: .listwallets, params: Empty())
     }
 
-    struct LoadedWallet: Decodable {
+    struct LoadedWallet: Codable {
         let name: String
         let warning: String
     }
@@ -46,7 +46,7 @@ public extension CoreRPC {
         return call(method: .loadwallet, params: [name])
     }
 
-    struct AddressInfo: Decodable {
+    struct AddressInfo: Codable {
         public let address: String
         public let desc: String?
         public let hdkeypath: String?

@@ -7,9 +7,9 @@ public extension CoreRPC {
         return call(method: .getnetworkinfo, params: Empty())
     }
     
-    struct Network: Decodable {
+    struct Network: Codable {
 
-        public enum Name: String, Decodable {
+        public enum Name: String, Codable {
             case ipv4
             case ipv6
             case onion
@@ -22,13 +22,13 @@ public extension CoreRPC {
         public let reachable: Bool
     }
     
-    struct NetworkAddress: Decodable {
+    struct NetworkAddress: Codable {
         public let address: String
         public let port: Int
         public let score: Int
     }
     
-    struct NetworkInfo: Decodable {
+    struct NetworkInfo: Codable {
         public let connections: Int
         public let incrementalfee: Double
         public let localaddresses: [NetworkAddress]
@@ -48,7 +48,7 @@ public extension CoreRPC {
         return call(method: .getnodeaddresses, params: [count])
     }
 
-    struct NodeAddress: Decodable {
+    struct NodeAddress: Codable {
         let address: String
         let port: Int
         let services: Int
@@ -59,9 +59,9 @@ public extension CoreRPC {
         return call(method: .getpeerinfo, params: Empty())
     }
 
-    struct PeerInfo: Decodable {
+    struct PeerInfo: Codable {
 
-        enum MessageType: String, CodingKey, Decodable {
+        enum MessageType: String, CodingKey, Codable {
             case addr
             case feefilter
             case getaddr

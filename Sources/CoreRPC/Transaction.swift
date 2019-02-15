@@ -15,9 +15,9 @@ public extension CoreRPC {
         return call(method: .getrawtransaction, params: [txid])
     }
 
-    public struct CreateRawParams: Encodable {
+    public struct CreateRawParams: Codable {
 
-        public struct Input: Encodable {
+        public struct Input: Codable {
             public let txid: String
             public let vout: Int
             public let sequence: Int?
@@ -29,7 +29,7 @@ public extension CoreRPC {
             }
         }
 
-        public struct AddressOutput: Encodable {
+        public struct AddressOutput: Codable {
             public let address: String
             public let amount: Double
 
@@ -52,13 +52,24 @@ public extension CoreRPC {
                 try container.encode(amount, forKey: address)
             }
 
+            enum DecodingKeys: String, CodingKey {
+                case address
+                case amount
+            }
+
+            public init(from decoder: Decoder) throws {
+                let values = try decoder.container(keyedBy: DecodingKeys.self)
+                address = try values.decode(String.self, forKey: .address)
+                amount = try values.decode(Double.self, forKey: .amount)
+            }
+
             public init(address: String, amount: Double) {
                 self.address = address
                 self.amount = amount
             }
         }
 
-        public struct DataOutput: Encodable {
+        public struct DataOutput: Codable {
             public let data: String
 
             public init(data: String) {
@@ -83,7 +94,7 @@ public extension CoreRPC {
         return call(method: .createrawtransaction, params: params)
     }
 
-    public struct FundedRawTransaction: Decodable {
+    public struct FundedRawTransaction: Codable {
         public let hex: String
         public let fee: Double
         public let changepos: Int
@@ -93,9 +104,9 @@ public extension CoreRPC {
         return call(method: .fundrawtransaction, params: [hex])
     }
 
-    public struct SignedRawTransaction: Decodable {
+    public struct SignedRawTransaction: Codable {
 
-        public struct SigningError: Decodable {
+        public struct SigningError: Codable {
             public let txid: String
             public let vout: Int
             public let scriptSig: String
@@ -116,7 +127,7 @@ public extension CoreRPC {
         return call(method: .sendrawtransaction, params: [hex])
     }
 
-    public struct SimpleTransaction: Decodable {
+    public struct SimpleTransaction: Codable {
 
         public enum Replaceable: String {
             case no
@@ -124,7 +135,7 @@ public extension CoreRPC {
             case yes
         }
 
-        public enum Category: String, Decodable {
+        public enum Category: String, Codable {
             case immature
             case generate
             case orphan
@@ -133,7 +144,7 @@ public extension CoreRPC {
 
         }
 
-        public struct Details: Decodable {
+        public struct Details: Codable {
             public let abandoned: Bool?
             public let address: String?
             public let amount: Double

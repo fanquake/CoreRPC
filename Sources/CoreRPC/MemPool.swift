@@ -3,9 +3,9 @@ import PromiseKit
 
 public extension CoreRPC {
 
-    struct MemPoolEntry: Decodable {
+    struct MemPoolEntry: Codable {
 
-        struct Fees: Decodable {
+        struct Fees: Codable {
             let ancestor: Double
             let base: Double
             let descendant: Double
