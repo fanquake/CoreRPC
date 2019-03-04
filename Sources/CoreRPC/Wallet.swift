@@ -3,6 +3,24 @@ import PromiseKit
 
 public extension CoreRPC {
 
+    struct CreatedWallet: Codable {
+        let name: String
+        let warning: String
+    }
+
+    func createWallet(name: String, disablePrivateKeys: Bool? = false, blank: Bool? = false) -> Promise<CreatedWallet> {
+
+        struct CreateWalletParams: Codable {
+            let blank: Bool?
+            let disable_private_keys: Bool?
+            let wallet_name: String
+        }
+
+        let params = CreateWalletParams(blank: blank, disable_private_keys: disablePrivateKeys, wallet_name: name)
+
+        return call(method: .createwallet, params: params)
+    }
+
     func getAddressInfo(address: String) -> Promise<AddressInfo> {
         return call(method: .getaddressinfo, params: [address])
     }
