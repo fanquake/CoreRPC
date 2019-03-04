@@ -3,6 +3,19 @@ import PromiseKit
 
 public extension CoreRPC {
 
+    struct WalletDirectories: Codable {
+
+        struct WalletDir: Codable {
+            let name: String
+        }
+
+        let wallets: [WalletDir]
+    }
+
+    func listWalletDirectories() -> Promise<WalletDirectories> {
+        return call(method: .listwalletdir, params: Empty())
+    }
+
     struct CreatedWallet: Codable {
         let name: String
         let warning: String
