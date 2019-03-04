@@ -37,12 +37,13 @@ firstly {
     print(coinbase.first!.txid)
     // "5b824f055bc4ea8763a817bd951c53f38f81d3c4f2066c6eee79acbad2819db7"
 }.catch { err in
-    debugPrint(err)
+    print(err)
 }
 ```
 
 ### Configuration
-The preferred configuration method is to set `CORERPC_USER` and `CORERPC_PASS` environment variables. 
+The preferred configuration method is to set `CORERPC_USER` and `CORERPC_PASS` environment variables.
+
 If found, they will be inserted into the given URL.
 
 It is also possible to pass a fully formed URL, such as `http://username:password@localhost:8332`.
@@ -86,9 +87,9 @@ firstly {
 }.then { hash in
     rpc.getVerboseBlock(hash: hash)
 }.done { block in
-    debugPrint("Tx count: \(block.tx.count)")
+    print("Tx count: \(block.tx.count)")
 }.catch { error in
-    debugPrint(error)
+    print(error)
 }
 ```
 
