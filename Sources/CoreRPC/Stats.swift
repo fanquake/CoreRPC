@@ -79,4 +79,26 @@ public extension CoreRPC {
         return call(method: .getblockstats, params: params)
     }
 
+    struct ChainStats: Codable {
+        let time: Int
+        let txcount: Int
+        let txrate: Decimal?
+        let window_final_block_hash: String
+        let window_block_count: Int
+        let window_interval: Int?
+        let window_tx_count: Int?
+    }
+
+    func getChainTxStats(blocks: Int?, blockHash: String?) -> Promise<ChainStats> {
+
+        struct ChainStatParams: Codable {
+            let blockhash: String?
+            let nblocks: Int?
+        }
+
+        let params = ChainStatParams(blockhash: blockHash, nblocks: blocks)
+
+        return call(method: .getchaintxstats, params: params)
+    }
+
 }
