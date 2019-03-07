@@ -18,6 +18,7 @@ public enum RPCMethod: String, Codable {
     case getchaintips = "getchaintips"
     case getchaintxstats = "getchaintxstats"
     case getconnectioncount = "getconnectioncount"
+    case getdescriptorinfo = "getdescriptorinfo"
     case getdifficulty = "getdifficulty"
     case getmemoryinfo = "getmemoryinfo"
     case getmempoolinfo = "getmempoolinfo"
