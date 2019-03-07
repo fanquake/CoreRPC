@@ -15,4 +15,8 @@ public extension CoreRPC {
         return call(method: .gettxoutproof, params: params)
     }
 
+    func verifyTxOutProof(_ proof: String) -> Promise<[String]> {
+        return call(method: .verifytxoutproof, params: [proof])
+    }
+
 }

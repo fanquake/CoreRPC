@@ -48,4 +48,5 @@ public enum RPCMethod: String, Codable {
     case settxfee = "settxfee"
     case signrawtransactionwithwallet = "signrawtransactionwithwallet"
     case uptime = "uptime"
+    case verifytxoutproof = "verifytxoutproof"
 }
