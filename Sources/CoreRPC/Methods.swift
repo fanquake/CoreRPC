@@ -34,6 +34,7 @@ public enum RPCMethod: String, Codable {
     case getrpcinfo = "getrpcinfo"
     case gettransaction = "gettransaction"
     case getwalletinfo = "getwalletinfo"
+    case gettxoutproof = "gettxoutproof"
     case getzmqnotifications = "getzmqnotifications"
     case help = "help"
     case listbanned = "listbanned"
