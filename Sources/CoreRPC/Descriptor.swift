@@ -14,4 +14,20 @@ public extension CoreRPC {
         return call(method: .getdescriptorinfo, params: [descriptor])
     }
 
+    func deriveAddress(for descriptor: String) -> Promise<[String]> {
+
+        return call(method: .deriveaddresses, params: [descriptor])
+    }
+
+    func deriveAddresses(for descriptor: String, with range: [Int]) -> Promise<[String]> {
+
+        struct deriveAddressesParams: Codable {
+            let descriptor: String
+            let range: [Int]
+        }
+
+        let params = deriveAddressesParams(descriptor: descriptor, range: range)
+
+        return call(method: .deriveaddresses, params: params)
+    }
 }
