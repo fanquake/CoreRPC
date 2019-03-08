@@ -1,6 +1,7 @@
 import Foundation
 
 public enum RPCMethod: String, Codable {
+    case analyzepsbt = "analyzepsbt"
     case createrawtransaction = "createrawtransaction"
     case createwallet = "createwallet"
     case deriveaddresses = "deriveaddresses"
