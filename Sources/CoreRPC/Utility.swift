@@ -22,7 +22,7 @@ public extension CoreRPC {
         return call(method: .getconnectioncount, params: Empty())
     }
 
-    public enum LoggingCategory: String, Codable {
+    enum LoggingCategory: String, Codable {
         case addrman
         case bench
         case cmpctblock
@@ -81,7 +81,7 @@ public extension CoreRPC {
         return call(method: .logging, params: [include, exclude])
     }
 
-    public enum MemoryInfoMode: String, Codable {
+    enum MemoryInfoMode: String, Codable {
         case stats
         case mallocinfo
     }

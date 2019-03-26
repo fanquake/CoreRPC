@@ -3,7 +3,7 @@ import PromiseKit
 
 public extension CoreRPC {
 
-    public enum EstimateMode: String, Codable {
+    enum EstimateMode: String, Codable {
         case CONSERVATIVE
         case ECONOMICAL
         case UNSET

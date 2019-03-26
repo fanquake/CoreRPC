@@ -3,7 +3,7 @@ import PromiseKit
 
 public extension CoreRPC {
 
-    public struct ZMQNotification: Codable {
+    struct ZMQNotification: Codable {
 
         public enum Notification: String, Codable {
             case pubhashblock

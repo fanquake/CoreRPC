@@ -164,7 +164,7 @@ public extension CoreRPC {
         public let warnings: String
     }
 
-    public enum NetworkName: String, Codable {
+    enum NetworkName: String, Codable {
         case main
         case test
         case regtest

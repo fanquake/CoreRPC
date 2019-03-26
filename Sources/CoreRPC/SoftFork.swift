@@ -2,7 +2,7 @@ import Foundation
 
 public extension CoreRPC {
     
-    public struct SoftFork: Codable {
+    struct SoftFork: Codable {
 
         public struct Status: Codable {
             public let status: Bool
@@ -13,7 +13,7 @@ public extension CoreRPC {
         public let reject: Status
     }
     
-    public struct BIP9SoftFork: Codable {
+    struct BIP9SoftFork: Codable {
         public let since: Int
         public let startTime: Int
         public let status: String

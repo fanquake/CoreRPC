@@ -15,7 +15,7 @@ public extension CoreRPC {
         return call(method: .getrawtransaction, params: [txid])
     }
 
-    public struct CreateRawParams: Codable {
+    struct CreateRawParams: Codable {
 
         public struct Input: Codable {
             public let txid: String
@@ -94,7 +94,7 @@ public extension CoreRPC {
         return call(method: .createrawtransaction, params: params)
     }
 
-    public struct FundedRawTransaction: Codable {
+    struct FundedRawTransaction: Codable {
         public let hex: String
         public let fee: Double
         public let changepos: Int
@@ -104,7 +104,7 @@ public extension CoreRPC {
         return call(method: .fundrawtransaction, params: [hex])
     }
 
-    public struct SignedRawTransaction: Codable {
+    struct SignedRawTransaction: Codable {
 
         public struct SigningError: Codable {
             public let txid: String
@@ -127,7 +127,7 @@ public extension CoreRPC {
         return call(method: .sendrawtransaction, params: [hex])
     }
 
-    public struct SimpleTransaction: Codable {
+    struct SimpleTransaction: Codable {
 
         public enum Replaceable: String {
             case no
@@ -168,7 +168,7 @@ public extension CoreRPC {
         public let txid: String
     }
     
-    public struct Transaction: Codable {
+    struct Transaction: Codable {
         public let hash: String
         public let hex: String?
         public let locktime: Int

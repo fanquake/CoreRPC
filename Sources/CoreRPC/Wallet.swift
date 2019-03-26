@@ -38,7 +38,7 @@ public extension CoreRPC {
         return call(method: .getaddressinfo, params: [address])
     }
 
-    public enum AddressType: String, Codable {
+    enum AddressType: String, Codable {
         case bech32
         case legacy
         case p2sh_segwit = "p2sh-segwit"
