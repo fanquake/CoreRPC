@@ -28,7 +28,7 @@ public extension CoreRPC {
             let next: Role?
         }
 
-        let estimated_feerate: String?
+        let estimated_feerate: Decimal?
         let estimated_vsize: Int?
         let fee: Decimal?
         let inputs: [Input]
