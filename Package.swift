@@ -9,7 +9,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/mxcl/PromiseKit", from: "6.8.4"),
-        .package(url: "https://github.com/PromiseKit/Foundation", from: "3.3.1")
+        .package(url: "https://github.com/PromiseKit/Foundation", from: "3.3.2")
     ],
     targets: [
         .target(name: "CoreRPC", dependencies: ["PromiseKit", "PMKFoundation"]),
