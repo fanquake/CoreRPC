@@ -4,8 +4,8 @@ import PackageDescription
 let package = Package(
     name: "Explorer",
     dependencies: [
-      .package(url: "https://github.com/IBM-Swift/Kitura.git", from: "2.6.2"),
-      .package(url: "https://github.com/mxcl/PromiseKit.git", from: "6.8.3"),
+      .package(url: "https://github.com/IBM-Swift/Kitura.git", from: "2.6.3"),
+      .package(url: "https://github.com/mxcl/PromiseKit.git", from: "6.8.4"),
       .package(url: "https://github.com/fanquake/corerpc.git", .branch("master"))
     ],
     targets: [
