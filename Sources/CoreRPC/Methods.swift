@@ -41,6 +41,7 @@ public enum RPCMethod: String, Codable {
     case getzmqnotifications = "getzmqnotifications"
     case help = "help"
     case listbanned = "listbanned"
+    case listlabels = "listlabels"
     case listunspent = "listunspent"
     case listwalletdir = "listwalletdir"
     case listwallets = "listwallets"
