@@ -40,7 +40,6 @@ public class CoreRPC {
     let connection: URLSession
     let decoder: JSONDecoder
     let encoder: JSONEncoder
-    var dataTask: URLSessionDataTask?
     var request: URLRequest
 
     public init(url: URL) throws {
