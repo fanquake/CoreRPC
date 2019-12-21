@@ -4,7 +4,7 @@ Swift wrapper for the [Bitcoin Core](https://github.com/bitcoin/bitcoin) [RPC](h
 
 ⚠️ Warning - This repository is not yet ready for use in production. ⚠️
 
-The plan is an initial release in line with the Bitcoin Core [0.18.0 release](https://bitcoincore.org/en/lifecycle/#schedule).
+The plan is an initial release in line with a future Bitcoin Core [release](https://bitcoincore.org/en/lifecycle/#schedule).
 
 Build:
 ```bash
@@ -51,7 +51,7 @@ It is also possible to pass a fully formed URL, such as `http://username:passwor
 ## Swift Playground
 An easy way to try this repo is with a [Swift Playground](https://developer.apple.com/swift-playgrounds).
 ```bash
-git clone https://github.com/fanquake/corerpc.git
+git clone https://github.com/fanquake/CoreRPC.git
 
 cd corerpc
 
