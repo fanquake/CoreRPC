@@ -100,6 +100,7 @@ public extension CoreRPC {
         let pingwait: Double?
         let relaytxes: Bool
         let services: String
+        let servicesnames: [String]
         let startingheight: Int
         let subver: String
         let synced_blocks: Int
