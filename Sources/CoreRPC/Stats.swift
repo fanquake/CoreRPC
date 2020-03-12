@@ -84,6 +84,7 @@ public extension CoreRPC {
         let txcount: Int
         let txrate: Decimal?
         let window_final_block_hash: String
+        let window_final_block_height: Int
         let window_block_count: Int
         let window_interval: Int?
         let window_tx_count: Int?
