@@ -147,7 +147,6 @@ public extension CoreRPC {
     
     struct BlockchainInfo: Codable {
         public let automatic_pruning: Bool?
-        public let bip9_softforks: [String: BIP9SoftFork]
         public let blocks: Int
         public let bestblockhash: String
         public let chain: NetworkName
@@ -159,7 +158,7 @@ public extension CoreRPC {
         public let pruned: Bool
         public let pruneheight: Int?
         public let size_on_disk: Int
-        public let softforks: [SoftFork]
+        public let softforks: SoftForks
         public let verificationprogress: Double
         public let warnings: String
     }
