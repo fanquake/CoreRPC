@@ -70,6 +70,7 @@ public extension CoreRPC {
             case getheaders
             case headers
             case inv
+            case other
             case ping
             case pong
             case sendcmpct
@@ -79,34 +80,50 @@ public extension CoreRPC {
             case version
         }
 
-        let addnode: Bool
-        let addr: String
-        let addrbind: String
-        let addrlocal: String
-        let banscore: Int
-        let bytesrecv: Int
-        //let bytesrecv_per_msg:
-        let bytessent: Int
-        //let bytessent_per_msg:
-        let conntime: Int
-        let id: Int
-        let inbound: Bool
-        let inflight: [Int]
-        let lastrecv: Int
-        let lastsend: Int
-        let minfeefilter: Double
-        let minping: Double
-        let pingtime: Double
-        let pingwait: Double?
-        let relaytxes: Bool
-        let services: String
-        let servicesnames: [String]
-        let startingheight: Int
-        let subver: String
-        let synced_blocks: Int
-        let synced_headers: Int
-        let timeoffset: Int
-        let version: Int
-        let whitelisted: Bool
+        public struct PerMessage: Codable {
+            public let addr: Int?
+            public let block: Int?
+            public let feefilter: Int?
+            public let getheaders: Int?
+            public let headers: Int?
+            public let inv: Int?
+            public let other: Int?
+            public let ping: Int?
+            public let pong: Int?
+            public let sendcmpct: Int?
+            public let sendheaders: Int?
+            public let verack: Int?
+            public let version: Int?
+        }
+
+        public let addnode: Bool
+        public let addr: String
+        public let addrbind: String
+        public let addrlocal: String
+        public let banscore: Int
+        public let bytesrecv: Int
+        public let bytesrecv_per_msg: PerMessage
+        public let bytessent: Int
+        public let bytessent_per_msg: PerMessage
+        public let conntime: Int
+        public let id: Int
+        public let inbound: Bool
+        public let inflight: [Int]
+        public let lastrecv: Int
+        public let lastsend: Int
+        public let minfeefilter: Double
+        public let minping: Double
+        public let pingtime: Double
+        public let pingwait: Double?
+        public let relaytxes: Bool
+        public let services: String
+        public let servicesnames: [String]
+        public let startingheight: Int
+        public let subver: String
+        public let synced_blocks: Int
+        public let synced_headers: Int
+        public let timeoffset: Int
+        public let version: Int
+        public let whitelisted: Bool
     }
 }
