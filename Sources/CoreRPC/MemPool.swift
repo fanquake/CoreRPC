@@ -27,6 +27,7 @@ public extension CoreRPC {
         let spentby: [String]
         let time: Int
         let vsize: Int
+        let weight: Int
         let wtxid: String
     }
 
