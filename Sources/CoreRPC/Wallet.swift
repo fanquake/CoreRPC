@@ -116,6 +116,7 @@ public extension CoreRPC {
     }
     
     struct WalletInfo: Codable {
+        public let avoid_reuse: Bool // whether this wallet tracks clean/dirty coins in terms of reuse
         public let balance: Double // the total confirmed balance of the wallet
         public let hdseedid: String? // the Hash160 of the HD seed (only present when HD is enabled)
         public let hdmasterkeyid: String? // alias to hdseedid
