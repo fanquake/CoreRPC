@@ -2,10 +2,6 @@
 
 Swift wrapper for the [Bitcoin Core](https://github.com/bitcoin/bitcoin) [RPC](https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs).
 
-⚠️ Warning - This repository is not yet ready for use in production. ⚠️
-
-The plan is an initial release in line with a future Bitcoin Core [release](https://bitcoincore.org/en/lifecycle/#schedule).
-
 Build:
 ```bash
 swift build
