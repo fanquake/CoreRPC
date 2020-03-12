@@ -24,9 +24,9 @@ public extension CoreRPC {
         let fees: Fees
         let height: Int
         let modifiedfee: Double
-        let size: Int
         let spentby: [String]
         let time: Int
+        let vsize: Int
         let wtxid: String
     }
 
