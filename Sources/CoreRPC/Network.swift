@@ -34,6 +34,7 @@ public extension CoreRPC {
         public let localaddresses: [NetworkAddress]
         public let localrelay: Bool
         public let localservices: String
+        public let localservicesnames: [String]
         public let networkactive: Bool
         public let networks: [Network]
         public let protocolversion: Int
