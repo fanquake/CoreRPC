@@ -11,6 +11,7 @@ public extension CoreRPC {
         }
 
         let active_commands: [ActiveCommand]
+        let logpath: String
     }
 
     func getRPCInfo() -> Promise<RPCInfo> {
