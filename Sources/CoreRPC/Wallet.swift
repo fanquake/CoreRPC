@@ -77,6 +77,20 @@ public extension CoreRPC {
         return call(method: .loadwallet, params: [name])
     }
 
+    func validateaddress(address: String) -> Promise<Address> {
+        return call(method: .validateaddress, params: [address])
+    }
+
+    struct Address: Codable {
+        let address: String
+        let isscript: Bool
+        let isvalid: Bool
+        let iswitness: Bool
+        let scriptPubKey: String
+        let witness_version: Int?
+        let witness_program: String?
+    }
+
     struct AddressInfo: Codable {
         public let address: String
         public let desc: String?
