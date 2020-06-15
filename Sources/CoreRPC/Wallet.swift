@@ -95,6 +95,7 @@ public extension CoreRPC {
         public let address: String
         public let desc: String?
         public let hdkeypath: String?
+        public let hdmasterfingerprint: String?
         public let hdseedid: String?
         public let hex: String?
         public let ischange: Bool
