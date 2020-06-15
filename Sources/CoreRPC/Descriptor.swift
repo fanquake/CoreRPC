@@ -4,6 +4,7 @@ import PromiseKit
 public extension CoreRPC {
 
     struct DescriptorInfo: Codable {
+        let checksum: String
         let descriptor: String
         let isrange: Bool
         let issolvable: Bool
